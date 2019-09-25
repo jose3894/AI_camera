@@ -1,10 +1,10 @@
 trigger:
 - master
 
-pool: 'VM Agent'
+pool: 'RPi Agent Test'
 
 variables:
-  imageName: '$(ID_docker_hub)/ai-camera-VM-simulation'
+  imageName: '$(ID_docker_hub)/ai-camera-rpi-simulation'
   dockerHub: 'ai-docker'
   tag: 'latest'
 
@@ -21,5 +21,5 @@ steps:
     repository: $(imageName)
     containerRegistry: $(dockerHub)
     command: build
-    Dockerfile: Dockerfile_x86_ARM
+    Dockerfile: Dockerfile_ARM
     tags: $(tag)
