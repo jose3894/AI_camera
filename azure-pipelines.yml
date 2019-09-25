@@ -1,0 +1,34 @@
+trigger:
+- master
+
+pool: 'Test agent'
+
+variables:
+  imageName: '$(ID_docker_hub)/test-docker-ai'
+  dockerHub: 'docker-test'
+  tag: 'latest'
+
+steps:
+
+- task: Docker@2
+  inputs:
+    command: login
+    containerRegistry: $(dockerHub)
+
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    repository: $(imageName)
+    containerRegistry: $(dockerHub)
+    command: build
+    Dockerfile: Dockerfile
+    tags: $(tag)
+
+- task: Docker@2
+  displayName: Push image
+  inputs:
+    repository: $(imageName)
+    containerRegistry: $(dockerHub)
+    command: push
+    tags: $(tag)
+    
