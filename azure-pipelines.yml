@@ -23,3 +23,20 @@ steps:
     command: build
     Dockerfile: Dockerfile_x86_ARM
     tags: $(tag)
+
+- task: Docker@1
+  displayName: 'Run an image'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: $(dockerHub)
+    command: 'Run an image'
+    imageName: $(imageName)
+    runInBackground: false
+
+- task: Docker@2
+  displayName: Push image
+  inputs:
+    repository: $(imageName)
+    containerRegistry: $(dockerHub)
+    command: push
+    tags: $(tag)
