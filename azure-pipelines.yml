@@ -5,7 +5,7 @@ pool: '$(agent_pool_name)'
 
 variables:
   imageName: '$(ID_docker_hub)/ai-camera'
-  dockerHub: '$(docker_service_connection)'
+  dockerHub: 'ai-docker'
   tag: 'latest'
 
 steps:
