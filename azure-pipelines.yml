@@ -4,7 +4,7 @@ trigger:
 pool: 'VM Agent'
 
 variables:
-  imageName: '$(ID_docker_hub)/ai-camera'
+  imageName: '$(ID_docker_hub)/ai-camera-VM-simulation'
   dockerHub: 'ai-docker'
   tag: 'latest'
 
@@ -22,4 +22,12 @@ steps:
     containerRegistry: $(dockerHub)
     command: build
     Dockerfile: Dockerfile_x86_ARM
+    tags: $(tag)
+
+- task: Docker@2
+  displayName: Push image
+  inputs:
+    repository: $(imageName)
+    containerRegistry: $(dockerHub)
+    command: push
     tags: $(tag)
