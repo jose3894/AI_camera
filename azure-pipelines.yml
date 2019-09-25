@@ -1,11 +1,11 @@
 trigger:
 - master
 
-pool: 'Test agent'
+pool: '$(agent_pool_name)'
 
 variables:
-  imageName: '$(ID_docker_hub)/test-docker-ai'
-  dockerHub: 'docker-test'
+  imageName: '$(ID_docker_hub)/ai-camera'
+  dockerHub: '$(docker_service_connection)'
   tag: 'latest'
 
 steps:
@@ -21,14 +21,5 @@ steps:
     repository: $(imageName)
     containerRegistry: $(dockerHub)
     command: build
-    Dockerfile: Dockerfile
+    Dockerfile: Dockerfile/Dockerfile_x86_ARM
     tags: $(tag)
-
-- task: Docker@2
-  displayName: Push image
-  inputs:
-    repository: $(imageName)
-    containerRegistry: $(dockerHub)
-    command: push
-    tags: $(tag)
-    
