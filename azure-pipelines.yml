@@ -1,7 +1,7 @@
 trigger:
 - master
 
-pool: '$(agent_pool_name)'
+pool: 'VM Agent'
 
 variables:
   imageName: '$(ID_docker_hub)/ai-camera'
