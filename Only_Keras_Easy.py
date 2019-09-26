@@ -42,7 +42,7 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # cargar pesos al nuevo modelo
 loaded_model.load_weights("model.h5")
-print("Cargado modelo desde disco")
+print("Cargado modelo desde disco ESTO ES UNA RAMA")
 
 # Compilar modelo cargado y listo para usar.
 loaded_model.compile(loss='mean_squared_error', optimizer='adam', metrics=['binary_accuracy'])
