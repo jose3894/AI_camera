@@ -1,2 +1,25 @@
 trigger:
-- none
+- development
+
+pool: 'RPi Agent Test'
+
+variables:
+  imageName: '$(ID_docker_hub)/ai-camera-rpi-simulation'
+  dockerHub: 'ai-docker'
+  tag: 'latest'
+
+steps:
+
+- task: Docker@2
+  inputs:
+    command: login
+    containerRegistry: $(dockerHub)
+
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    repository: $(imageName)
+    containerRegistry: $(dockerHub)
+    command: build
+    Dockerfile: Dockerfile_ARM
+    tags: $(tag)
