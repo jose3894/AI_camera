@@ -1,5 +1,5 @@
 trigger:
-- development
+- master
 
 pool: 'RPi Agent Test'
 
