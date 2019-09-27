@@ -17,7 +17,7 @@ model.compile(loss='mean_squared_error',
               optimizer='adam',
               metrics=['binary_accuracy'])
 
-model.fit(training_data, target_data, epochs=1000)
+model.fit(training_data, target_data, epochs=20)
 
 # evaluamos el modelo
 scores = model.evaluate(training_data, target_data)
@@ -42,7 +42,7 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # cargar pesos al nuevo modelo
 loaded_model.load_weights("model.h5")
-print("Cargado modelo desde disco HOLA SOY DESARROLLADOR")
+print("Cargado modelo desde disco VIDA")
 
 # Compilar modelo cargado y listo para usar.
 loaded_model.compile(loss='mean_squared_error', optimizer='adam', metrics=['binary_accuracy'])
