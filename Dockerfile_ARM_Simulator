@@ -1,0 +1,32 @@
+FROM arm32v7/debian:buster-slim
+
+RUN apt-get update
+
+#install python & dependencies
+RUN apt-get install -y screen python3 \
+                              python3-dev \
+                              python3-pip \
+                              python3-setuptools \
+                              python3-numpy \
+                              libblas-dev \
+                              liblapack-dev \
+                              libatlas-base-dev \
+                              gfortran \
+                              python3-scipy
+RUN apt-get update
+RUN apt-get install -y screen python3-h5py
+RUN apt-get install -y wget
+
+# Tensorflow
+RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp37-none-linux_armv7l.whl
+RUN pip3 install tensorflow-1.13.1-cp37-none-linux_armv7l.whl
+RUN python3 -m pip install tensorflow
+
+#install python libraries
+RUN python3 -m pip install pip --upgrade \
+    && python3 -m pip install keras
+
+WORKDIR /app
+COPY . /app
+
+CMD ["python3", "Only_Keras_Easy.py"]
