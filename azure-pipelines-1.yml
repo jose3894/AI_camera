@@ -21,5 +21,5 @@ steps:
     repository: $(imageName)
     containerRegistry: $(dockerHub)
     command: build
-    Dockerfile: Dockerfile_ARM
+    Dockerfile: Dockerfile_ARM_Simulator
     tags: $(tag)
