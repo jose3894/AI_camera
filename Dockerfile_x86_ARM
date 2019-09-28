@@ -31,4 +31,5 @@ RUN python3 -m pip install pip --upgrade \
 WORKDIR /app
 COPY . /app
 
-CMD ["python3", "Only_Keras_Easy.py"]
+ENTRYPOINT ["python3"]
+CMD ["app_Test.py"]
