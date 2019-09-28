@@ -4,7 +4,7 @@ trigger:
 pool: 'RPi Agent Test'
 
 variables:
-  imageName: '$(ID_docker_hub)/ai-camera-rpi-simulation'
+  imageName: '$(ID_docker_hub)/ai-camera-rpi'
   dockerHub: 'ai-docker'
   tag: 'latest'
 

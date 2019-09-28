@@ -47,3 +47,4 @@ print("Cargado modelo desde disco PRUEBA")
 # Compilar modelo cargado y listo para usar.
 loaded_model.compile(loss='mean_squared_error', optimizer='adam', metrics=['binary_accuracy'])
 
+print("=========== MODEL ===========")
