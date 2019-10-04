@@ -1,35 +1,57 @@
-FROM arm32v7/debian:buster-slim
+ 
+FROM raspbian/stretch
 
 COPY qemu-arm-static /usr/bin
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-utils \
+    wget
 
-#install python & dependencies
-RUN apt-get install -y screen python3 \
-                              python3-dev \
-                              python3-pip \
-                              python3-setuptools \
-                              python3-numpy \
-                              libblas-dev \
-                              liblapack-dev \
-                              libatlas-base-dev \
-                              gfortran \
-                              python3-scipy
-RUN apt-get update
-RUN apt-get install -y screen python3-h5py
-RUN apt-get install -y wget
+RUN apt-get install -y build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev
+RUN wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
+RUN tar xf Python-3.7.2.tar.xz
+RUN cd Python-3.7.2 && ./configure && make -j 4 && make altinstall
+ 
 
-# Tensorflow
-RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp37-none-linux_armv7l.whl
-RUN pip3 install tensorflow-1.13.1-cp37-none-linux_armv7l.whl
-RUN python3 -m pip install tensorflow
+#RUN apt-get purge wolfram-engine
+RUN apt-get purge libreoffice*
+RUN apt-get clean
+RUN apt-get autoremove	
+RUN apt-get -y upgrade
+RUN apt-get install -y build-essential cmake pkg-config
+RUN apt-get install -y libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
+RUN apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+RUN apt-get install -y libxvidcore-dev libx264-dev
+RUN apt-get install -y libfontconfig1-dev libcairo2-dev
+RUN apt-get install -y libgdk-pixbuf2.0-dev libpango1.0-dev
+RUN apt-get install -y libgtk2.0-dev libgtk-3-dev
+RUN apt-get install -y libfontconfig1-dev libcairo2-dev
+RUN apt-get install -y libgdk-pixbuf2.0-dev libpango1.0-dev
+RUN apt-get install -y libgtk2.0-dev libgtk-3-dev
+RUN apt-get install -y libatlas-base-dev gfortran
+RUN apt-get install -y libhdf5-dev libhdf5-serial-dev
+RUN apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+RUN apt-get install -y python3-dev
+RUN apt-get install -y python3-pip
+RUN apt-get install -y libilmbase-dev
+RUN apt-get install -y libopenexr-dev
+RUN apt-get install -y libgstreamer1.0-dev
+RUN apt install -y wget python3-numpy libatlas-base-dev libwebp6 \
+                   libtiff5 libjasper1 libilmbase12 libopenexr22 \
+                   libgstreamer1.0-0 libavcodec57 libswscale4 libqt4-test \
+                   libqtcore4 libqtgui4 libjpeg62-turbo libavformat57
 
-#install python libraries
-RUN python3 -m pip install pip --upgrade \
-    && python3 -m pip install keras
+RUN python3 -m pip install opencv-python
+RUN python3 -m pip install opencv-contrib-python
+
+
+RUN python3 -m pip install flask
+
+COPY ./AI_app /app
 
 WORKDIR /app
-COPY . /app
+
+EXPOSE 5000
 
 ENTRYPOINT ["python3"]
-CMD ["app_Test.py"]
+CMD ["Testing/app_Test.py"]
