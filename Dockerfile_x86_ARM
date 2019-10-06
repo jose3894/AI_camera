@@ -62,10 +62,10 @@ RUN apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
 RUN apt-get install -y libilmbase-dev
 RUN apt-get install -y libopenexr-dev
 RUN apt-get install -y libgstreamer1.0-dev
-RUN apt install -y wget libwebp6 \
-                   libtiff5 libjasper1 libilmbase12 libopenexr22 \
-                   libgstreamer1.0-0 libavcodec57 libswscale4 libqt4-test \
-                   libqtcore4 libqtgui4 libjpeg62-turbo libavformat57
+#RUN apt install -y wget libwebp6 \
+#                   libtiff5 libjasper1 libilmbase12 libopenexr22 \
+#                   libgstreamer1.0-0 libavcodec57 libswscale4 libqt4-test \
+#                   libqtcore4 libqtgui4 libjpeg62-turbo libavformat57
 
 RUN python3 -m pip install opencv-python
 RUN python3 -m pip install opencv-contrib-python
