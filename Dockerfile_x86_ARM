@@ -67,6 +67,7 @@ RUN python3 -m pip install opencv-contrib-python
 # Upgrade pip
 
 RUN python3 -m pip install pip --upgrade
+RUN python3 -m pip install setuptools --upgrade
 
 # Install Tensorflow
 
