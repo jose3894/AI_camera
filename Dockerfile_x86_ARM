@@ -67,8 +67,8 @@ RUN apt-get install -y libgstreamer1.0-dev
 #                   libgstreamer1.0-0 libavcodec57 libswscale4 libqt4-test \
 #                   libqtcore4 libqtgui4 libjpeg62-turbo libavformat57
 RUN python3 -m pip install pip --upgrade
-RUN python3 -m pip install opencv-python
-RUN python3 -m pip install opencv-contrib-python
+RUN pip3 install opencv-python
+RUN pip3 install opencv-contrib-python
 
 # Upgrade pip and setuptools
 
