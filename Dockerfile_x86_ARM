@@ -1,4 +1,4 @@
-FROM arm32v7/debian:stretch-slim
+FROM raspbian/stretch
 
 COPY qemu-arm-static /usr/bin
 
@@ -14,15 +14,14 @@ RUN apt-get install -y build-essential tk-dev libncurses5-dev libncursesw5-dev l
 
 # Install Python 3.7
 
-#RUN wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
-#RUN tar xf Python-3.7.2.tar.xz
-#RUN cd Python-3.7.2 && ./configure && make -j 4 && make altinstall
+RUN wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
+RUN tar xf Python-3.7.2.tar.xz
+RUN cd Python-3.7.2 && ./configure && make -j 4 && make altinstall
 
 
 # Install dependencies
 
-RUN apt-get install -y screen python3.7 \
-                              python3-dev \
+RUN apt-get install -y screen python3-dev \
                               python3-pip \
                               python3-setuptools \
                               python3-numpy \
@@ -71,7 +70,7 @@ RUN python3 -m pip install setuptools --upgrade
 
 # Install Tensorflow
 
-RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp37-none-linux_armv7l.whl
+RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp35-none-linux_armv7l.whl
 RUN pip3 install tensorflow-1.13.1-cp37-none-linux_armv7l.whl
 RUN python3 -m pip install tensorflow
 
