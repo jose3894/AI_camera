@@ -71,7 +71,7 @@ RUN python3 -m pip install setuptools --upgrade
 # Install Tensorflow
 
 RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp35-none-linux_armv7l.whl
-RUN pip3 install tensorflow-1.13.1-cp37-none-linux_armv7l.whl
+RUN pip3 install tensorflow-1.13.1-cp35-none-linux_armv7l.whl
 RUN python3 -m pip install tensorflow
 
 
