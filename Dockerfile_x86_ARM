@@ -64,6 +64,9 @@ RUN apt install -y wget libwebp6 \
 RUN python3 -m pip install opencv-python
 RUN python3 -m pip install opencv-contrib-python
 
+# Upgrade pip
+
+RUN python3 -m pip install pip --upgrade
 
 # Install Tensorflow
 
@@ -79,8 +82,7 @@ RUN python3 -m pip install flask
 
 # Install Keras
 
-RUN python3 -m pip install pip --upgrade \
-    && python3 -m pip install keras
+RUN python3 -m pip install keras
 
 
 
