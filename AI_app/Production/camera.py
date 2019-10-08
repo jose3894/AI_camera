@@ -43,8 +43,7 @@ class Camera():
 		s = False
 		while not s:
 			s, img = self.cap.read()
-		resize_img = cv2.resize(img, (50, 20))
-		cv2.imwrite("stream.jpg", resize_img)
+		cv2.imwrite("stream.jpg", img)
 		r, jpg = cv2.imencode('.jpg', img)
 
 		return r, jpg
