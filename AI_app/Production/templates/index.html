@@ -23,7 +23,7 @@
 <!-- header top section -->
 <section class="banner" role="banner">
   <header id="header">
-    <div class="header-content clearfix"> <a class="logo" href="index.html"><img src="{{url_for('static',filename='images/logo.png')}}" alt=""></a>
+    <div class="header-content clearfix"> <a class="logo" href="templates/index.html"><img src="{{url_for('static',filename='images/logo.png')}}" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
           <li>666.666.666</li>
@@ -66,16 +66,17 @@
       <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
         <div class="caption">
           <div class="caption-content">
-            <h3>The Shape of Design</h3>
-            <h4>Branding/Graphic</h4>
+            <h3>Madrid</h3>
+            <h4>Spain</h4>
           </div>
         </div>
-        <img src="{{ url_for('video_feed') }}"> </a> </div>
+        <!--<img src="{{ url_for('video_feed') }}"> </a> </div>-->
+        <img src="{{url_for('static',filename='images/portfolio/work-1.jpg')}}" class="img-responsive" alt=""> </a> </div>
       <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
         <div class="caption">
           <div class="caption-content">
-            <h3>Madrid</h3>
-            <h4>Spain</h4>
+            <h3>The Shape of Design</h3>
+            <h4>Branding/Graphic</h4>
           </div>
         </div>
         <img src="{{url_for('static',filename='images/portfolio/work-2.jpg')}}" class="img-responsive" alt=""> </a> </div>
