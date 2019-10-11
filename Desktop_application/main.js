@@ -19,6 +19,7 @@ app.on('ready', () => {
 
 function createNewWebCamWindow(){
     newWebCamWindow = new BrowserWindow({
+        icon: 'assets/img/lens.png',
         width: 400,
         height: 300,
         title: 'Madrid'
@@ -31,6 +32,7 @@ function createNewWebCamWindow(){
 
 function createAboutWindow(){
     newAboutWindow = new BrowserWindow({
+        icon: 'assets/img/lens.png',
         width: 400,
         height: 300,
         title: 'About'
