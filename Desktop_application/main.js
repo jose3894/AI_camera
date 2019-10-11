@@ -1,9 +1,84 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let mainWindow
+let newWebCamWindow
+let newAboutWindow
 
+app.on('ready', () => {
+    mainWindow = new BrowserWindow({icon: 'assets/img/lens.png'});
+    mainWindow.loadFile('index.html')
+    const mainMenu = Menu.buildFromTemplate(templateMenu)
+    Menu.setApplicationMenu(mainMenu)
+    mainWindow.webContents.openDevTools()
+    mainWindow.on('closed', () => {
+        app.quit();
+    })
+});
+
+function createNewWebCamWindow(){
+    newWebCamWindow = new BrowserWindow({
+        width: 400,
+        height: 300,
+        title: 'Madrid'
+    });
+    newWebCamWindow.loadFile('webcam.html')
+    newWebCamWindow.on('closed', () => {
+        newWebCamWindow = null
+    })
+}
+
+function createAboutWindow(){
+    newAboutWindow = new BrowserWindow({
+        width: 400,
+        height: 300,
+        title: 'About'
+    });
+    newAboutWindow.loadFile('about.html')
+    newAboutWindow.on('closed', () => {
+        newAboutWindow = null
+    })
+}
+
+ipcMain.on('aboutWindows:new', (e, active) => {
+    createAboutWindow();
+});
+
+const templateMenu = [
+    {
+        label: 'File',
+        submenu: [
+            {
+                label: 'Madrid',
+                accelerator: 'Ctrl+M',
+                click(){
+                    createNewWebCamWindow();
+                }
+
+            },
+            {
+                label: 'Exit',
+                accelerator: 'Ctrl+Q',
+                click(){
+                    app.quit();
+                }
+            }
+        ]
+    },
+    {
+        label: 'Help',
+        submenu: [
+            {
+                label: 'About',
+                click(){
+                    createAboutWindow();
+                }
+            }
+        ]
+    }
+];
+/*
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
@@ -15,8 +90,8 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  //win.loadFile('index.html')
-  win.loadURL('http://192.168.1.12:5000')
+  win.loadFile('index.html')
+  //win.loadURL('http://192.168.1.12:5000')
 
   // Open the DevTools.
   //win.webContents.openDevTools()
@@ -54,3 +129,4 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+*/

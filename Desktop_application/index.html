@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Security System</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photon.css">
+
+    <!-- Electron Javascript
+  <script src="main.js" charset="utf-8"></script>-->
+
+</head>
+
+<body>
+
+<div class="window">
+    <div class="window-content">
+        <header class="toolbar toolbar-header">
+            <h1 class="title">Header with actions</h1>
+        </header>
+        <div class="pane-group">
+            <!-- Left panel part -->
+            <div class="pane-sm sidebar">
+                <!-- List people -->
+                <ul class="list-group">
+                    <li class="list-group-header">
+                        <input class="form-control" type="text" placeholder="Search for someone">
+                    </li>
+                    <li class="list-group-item">
+                        <img class="img-circle media-object pull-left" src="assets/img/joker.png" width="32"
+                             height="32">
+                        <div class="media-body">
+                            <strong>Jose</strong>
+                            <p>Support deployment</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <img class="img-circle media-object pull-left" src="assets/img/avatar2.png" width="32"
+                             height="32">
+                        <div class="media-body">
+                            <strong>Bob</strong>
+                            <p>Development</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <img class="img-circle media-object pull-left" src="assets/img/avatar2.png" width="32"
+                             height="32">
+                        <div class="media-body">
+                            <strong>Konstantina</strong>
+                            <p>Designer</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <img class="img-circle media-object pull-left" src="assets/img/avatar2.png" width="32"
+                             height="32">
+                        <div class="media-body">
+                            <strong>Ana</strong>
+                            <p>Helper</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <img class="img-circle media-object pull-left" src="assets/img/avatar2.png" width="32"
+                             height="32">
+                        <div class="media-body">
+                            <strong>Esteve</strong>
+                            <p>Development</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <img class="img-circle media-object pull-left" src="assets/img/avatar2.png" width="32"
+                             height="32">
+                        <div class="media-body">
+                            <strong>Peter</strong>
+                            <p>Marketing</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Right panel part -->
+            <div class="pane">
+                <!-- Toolbar actions-->
+                <div class="toolbar-actions">
+                    <div class="btn-group">
+                        <button class="btn btn-default active">
+                            <span class="icon icon-home"></span>
+                        </button>
+                        <button class="btn btn-default">
+                            <span class="icon icon-folder"></span>
+                        </button>
+                        <button class="btn btn-default">
+                            <span class="icon icon-cloud"></span>
+                        </button>
+                        <button class="btn btn-default">
+                            <span class="icon icon-popup"></span>
+                        </button>
+                        <button class="btn btn-default">
+                            <span class="icon icon-shuffle"></span>
+                        </button>
+                    </div>
+                    <button class="btn btn-default">
+                        <span class="icon icon-home icon-text"></span>
+                        Filters
+                    </button>
+                </div>
+                <!-- Camera lives -->
+                <h1>Test</h1>
+                <!-- Footer save cancel -->
+                <footer class="toolbar toolbar-footer">
+                    <div class="toolbar-actions">
+                        <button class="btn btn-default">
+                            Cancel
+                        </button>
+                        <script src="main.js" charset="utf-8">
+                            const { BrowserWindow } = require('electron')
+                            createAboutWindow();
+                        </script>
+                        <button class="btn btn-primary pull-right" onclick="createAboutWindow()">
+                            Save
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
