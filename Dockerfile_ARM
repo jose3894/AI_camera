@@ -69,7 +69,7 @@ RUN pip3 install tensorflow-1.13.1-cp35-none-linux_armv7l.whl
 RUN python3 -m pip install tensorflow
 
 # Install Flask
-RUN python3 -m pip install flask
+RUN python3 -m pip install flask --upgrade
 
 # Install Keras
 RUN python3 -m pip install keras --upgrade
