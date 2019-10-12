@@ -11,7 +11,7 @@ app.on('ready', () => {
     mainWindow.loadFile('index.html')
     const mainMenu = Menu.buildFromTemplate(templateMenu)
     Menu.setApplicationMenu(mainMenu)
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
     mainWindow.on('closed', () => {
         app.quit();
     })
@@ -20,14 +20,19 @@ app.on('ready', () => {
 function createNewWebCamWindow(){
     newWebCamWindow = new BrowserWindow({
         icon: 'assets/img/lens.png',
-        width: 400,
-        height: 300,
+        width: 600,
+        height: 400,
         title: 'Madrid'
     });
-    newWebCamWindow.loadFile('webcam.html')
+    //newWebCamWindow.loadFile('webcam.html')
+    newWebCamWindow.loadURL('http://192.168.1.12:5000')
     newWebCamWindow.on('closed', () => {
         newWebCamWindow = null
     })
+}
+
+function loadCamera(){
+    mainWindow.loadFile('webcam.html')
 }
 
 function createAboutWindow(){

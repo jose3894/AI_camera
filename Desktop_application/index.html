@@ -5,10 +5,9 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/photon.css">
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Electron Javascript
-  <script src="main.js" charset="utf-8"></script>-->
-
+    <script src="main.js" charset="utf-8"></script>-->
 </head>
 
 <body>
@@ -103,17 +102,13 @@
                     </button>
                 </div>
                 <!-- Camera lives -->
-                <h1>Test</h1>
+                <iframe src="http://192.168.1.12:5000" frameborder="0" width="600" height="400"></iframe>
                 <!-- Footer save cancel -->
                 <footer class="toolbar toolbar-footer">
                     <div class="toolbar-actions">
                         <button class="btn btn-default">
                             Cancel
                         </button>
-                        <script src="main.js" charset="utf-8">
-                            const { BrowserWindow } = require('electron')
-                            createAboutWindow();
-                        </script>
                         <button class="btn btn-primary pull-right" onclick="createAboutWindow()">
                             Save
                         </button>
