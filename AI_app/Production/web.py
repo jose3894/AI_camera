@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, Response
+import threading
 
 # emulated camera
 from camera import Camera
@@ -7,7 +8,7 @@ from camera import Camera
 # If you are using a webcam -> no need for changes
 # if you are using the Raspberry Pi camera module (requires picamera package)
 # from camera_pi import Camera
-
+lock = threading.Lock()
 app = Flask(__name__)
 
 
@@ -18,9 +19,11 @@ def index():
 
 
 def gen(camera):
+    global lock
     """Video streaming generator function."""
     while True:
-        r, jpg = camera.get_frame()
+        with lock:
+            r, jpg = camera.get_frame()
 
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + jpg.tobytes() + b'\r\n\r\n')
 
