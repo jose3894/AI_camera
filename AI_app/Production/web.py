@@ -8,7 +8,6 @@ from camera import Camera
 # If you are using a webcam -> no need for changes
 # if you are using the Raspberry Pi camera module (requires picamera package)
 # from camera_pi import Camera
-lock = threading.Lock()
 app = Flask(__name__)
 
 
@@ -19,10 +18,8 @@ def index():
 
 
 def gen(camera):
-    global lock
     """Video streaming generator function."""
     while True:
-        with lock:
             r, jpg = camera.get_frame()
 
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + jpg.tobytes() + b'\r\n\r\n')
@@ -36,4 +33,4 @@ def video_feed():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, threaded=True)
+    app.run(host='0.0.0.0', debug=True)
