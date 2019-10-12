@@ -5,7 +5,6 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/photon.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Electron Javascript
     <script src="main.js" charset="utf-8"></script>-->
 </head>
@@ -13,10 +12,35 @@
 <body>
 
 <div class="window">
+    <!-- Toolbar actions-->
+    <header class="toolbar toolbar-header">
+        <div class="toolbar-actions">
+            <div class="btn-group">
+                <button class="btn btn-default active">
+                    <span class="icon icon-home"></span>
+                </button>
+                <button class="btn btn-default">
+                    <span class="icon icon-folder"></span>
+                </button>
+                <button class="btn btn-default">
+                    <span class="icon icon-cloud"></span>
+                </button>
+                <button class="btn btn-default">
+                    <span class="icon icon-popup"></span>
+                </button>
+                <button class="btn btn-default">
+                    <span class="icon icon-shuffle"></span>
+                </button>
+            </div>
+            <button class="btn btn-default">
+                <span class="icon icon-home icon-text"></span>
+                Filters
+            </button>
+        </div>
+    </header>
+
+    <!-- Panels -->
     <div class="window-content">
-        <header class="toolbar toolbar-header">
-            <h1 class="title">Header with actions</h1>
-        </header>
         <div class="pane-group">
             <!-- Left panel part -->
             <div class="pane-sm sidebar">
@@ -77,34 +101,15 @@
             </div>
             <!-- Right panel part -->
             <div class="pane">
-                <!-- Toolbar actions-->
-                <div class="toolbar-actions">
-                    <div class="btn-group">
-                        <button class="btn btn-default active">
-                            <span class="icon icon-home"></span>
-                        </button>
-                        <button class="btn btn-default">
-                            <span class="icon icon-folder"></span>
-                        </button>
-                        <button class="btn btn-default">
-                            <span class="icon icon-cloud"></span>
-                        </button>
-                        <button class="btn btn-default">
-                            <span class="icon icon-popup"></span>
-                        </button>
-                        <button class="btn btn-default">
-                            <span class="icon icon-shuffle"></span>
-                        </button>
-                    </div>
-                    <button class="btn btn-default">
-                        <span class="icon icon-home icon-text"></span>
-                        Filters
-                    </button>
-                </div>
+
                 <!-- Camera lives -->
-                <iframe src="http://192.168.1.12:5000" frameborder="0" width="600" height="500"></iframe>
+                <div align="center">
+                    <h4 align="center">Madrid - Spain</h4>
+                    <iframe src="http://192.168.1.12:5000" frameborder="0" width="700" height="500"></iframe>
+                </div>
+
                 <!-- Footer save cancel -->
-                <footer class="toolbar toolbar-footer">
+                <footer class="toolbar toolbar-footer" style="width:770px; margin-left:auto; margin-right:auto">
                     <div class="toolbar-actions">
                         <button class="btn btn-default">
                             Cancel
@@ -115,8 +120,17 @@
                     </div>
                 </footer>
             </div>
+
         </div>
     </div>
+    <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+            <p>Designed by <b>Jose Antonio Alcaide Recio</b>
+            <span class="icon icon-linkedin-circled"></span>
+            </p>
+        </div>
+    </footer>
+</div>
 </div>
 </body>
 </html>
