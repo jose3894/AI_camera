@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, ipcRenderer } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,7 +11,7 @@ app.on('ready', () => {
     mainWindow.loadFile('index.html')
     const mainMenu = Menu.buildFromTemplate(templateMenu)
     Menu.setApplicationMenu(mainMenu)
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
     mainWindow.on('closed', () => {
         app.quit();
     })
@@ -24,7 +24,7 @@ function createNewWebCamWindow(){
         height: 400,
         title: 'Madrid'
     });
-    //newWebCamWindow.loadFile('webcam.html')
+    newWebCamWindow.loadFile('webcam.html')
     newWebCamWindow.loadURL('http://192.168.1.12:5000')
     newWebCamWindow.on('closed', () => {
         newWebCamWindow = null
@@ -48,8 +48,10 @@ function createAboutWindow(){
     })
 }
 
-ipcMain.on('aboutWindows:new', (e, active) => {
-    createAboutWindow();
+ipcMain.on('quit-app', function() {
+    alert("hola2");
+  //mainWindow.window.close(); // Standart Event of the BrowserWindow object.
+  //app.quit(); // Standart event of the app - that will close our app.
 });
 
 const templateMenu = [

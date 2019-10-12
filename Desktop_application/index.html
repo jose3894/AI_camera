@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/photon.css">
     <!-- Electron Javascript
     <script src="main.js" charset="utf-8"></script>-->
+    <script type='text/javascript'>
+      window.ipcRenderer = require('electron').ipcRenderer;
+    </script>
 </head>
 
 <body>
@@ -114,9 +117,16 @@
                         <button class="btn btn-default">
                             Cancel
                         </button>
-                        <button class="btn btn-primary pull-right" onclick="createAboutWindow()">
+                        <button class="btn btn-primary pull-right">
                             Save
                         </button>
+                        <button id='my-button'>X</button>
+
+                        <script type='text/javascript'>
+                            document.getElementById("my-button").addEventListener("click", function (e) {
+                                window.ipcRenderer.send('quit-app');
+                              });
+                        </script>
                     </div>
                 </footer>
             </div>
