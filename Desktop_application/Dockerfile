@@ -23,6 +23,5 @@ WORKDIR /app
 #Install electron
 RUN npm install --save-dev electron
 
-
 # Launch application
 CMD ["npm","start"]
