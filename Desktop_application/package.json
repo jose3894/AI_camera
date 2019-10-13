@@ -1,8 +1,33 @@
 {
   "name": "Camera-Security-System",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Application for watching all the cameras",
   "main": "main.js",
   "scripts": {
-    "start": "electron --no-sandbox ."
+    "start": "electron --no-sandbox .",
+    "pack": "build --dir",
+    "dist": "electron-builder --linux"
+  },
+  "author": "Jose Antonio Alcaide Recio",
+  "licence": "MIT",
+  "build": {
+    "appId": "camSSv1",
+
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "icon": "build/background.png",
+      "category": "Utility"
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
+  },
+  "devDependencies": {
+    "electron": "^6.0.12",
+    "electron-builder": "^21.2.0"
   }
 }
