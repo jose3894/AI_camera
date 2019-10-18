@@ -7,11 +7,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     python3.7 \
     python3-pip
-    
+
 RUN pip3 install --upgrade pip
 RUN pip3 install --upgrade setuptools
 RUN pip3 install tensorflow
 RUN pip3 install keras
+RUN pip3 install matplotlib
+RUN pip3 install sklearn
+RUN pip3 install Pillow
 
 WORKDIR /app
 
