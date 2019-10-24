@@ -12,7 +12,7 @@ from keras.layers import Conv2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 from keras.layers.advanced_activations import LeakyReLU
 
-dirname = os.path.join(os.getcwd(), 'sportimages')
+dirname = os.path.join(os.getcwd(), 'db_images')
 imgpath = dirname + os.sep
 
 images = []
@@ -116,4 +116,4 @@ sport_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.
 sport_train_dropout = sport_model.fit(train_X, train_label, batch_size=batch_size,epochs=epochs,verbose=1,validation_data=(valid_X, valid_label))
 
 # guardamos la red, para reutilizarla en el futuro, sin tener que volver a entrenar
-sport_model.save("sports_mnist.h5py")
+sport_model.save("images_model.h5py")
