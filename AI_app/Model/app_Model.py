@@ -4,13 +4,14 @@ import re
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-import keras
-from keras.utils import to_categorical
-from keras.models import Sequential,Input,Model
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.layers.normalization import BatchNormalization
-from keras.layers.advanced_activations import LeakyReLU
+#import keras
+import tensorflow.keras
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential,Model
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+#from tensorflow.keras.layers.normalization import BatchNormalization
+#from tensorflow.keras.layers.advanced_activations import LeakyReLU
 
 dirname = os.path.join(os.getcwd(), 'db_images')
 imgpath = dirname + os.sep
@@ -95,25 +96,25 @@ print(train_X.shape,valid_X.shape,train_label.shape,valid_label.shape)
 
 INIT_LR = 1e-3
 epochs = 6
-batch_size = 64
+batch_size = 10
 
 sport_model = Sequential()
-sport_model.add(Conv2D(32, kernel_size=(3, 3),activation='linear',padding='same',input_shape=(21,28,3)))
-sport_model.add(LeakyReLU(alpha=0.1))
+sport_model.add(Conv2D(64, kernel_size=(3, 3),activation='linear',padding='same',input_shape=(200,320,3)))
+#sport_model.add(LeakyReLU(alpha=0.1))
 sport_model.add(MaxPooling2D((2, 2),padding='same'))
 sport_model.add(Dropout(0.5))
 
 sport_model.add(Flatten())
-sport_model.add(Dense(32, activation='linear'))
-sport_model.add(LeakyReLU(alpha=0.1))
+sport_model.add(Dense(64, activation='linear'))
+#sport_model.add(LeakyReLU(alpha=0.1))
 sport_model.add(Dropout(0.5))
 sport_model.add(Dense(nClasses, activation='softmax'))
 
 sport_model.summary()
 
-sport_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adagrad(lr=INIT_LR, decay=INIT_LR / 100),metrics=['accuracy'])
+sport_model.compile(loss=tensorflow.keras.losses.categorical_crossentropy, optimizer=tensorflow.keras.optimizers.Adagrad(lr=INIT_LR, decay=INIT_LR / 100),metrics=['accuracy'])
 
 sport_train_dropout = sport_model.fit(train_X, train_label, batch_size=batch_size,epochs=epochs,verbose=1,validation_data=(valid_X, valid_label))
 
 # guardamos la red, para reutilizarla en el futuro, sin tener que volver a entrenar
-sport_model.save("images_model.h5py")
+sport_model.save("images_model.h5")
