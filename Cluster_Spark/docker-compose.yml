@@ -6,7 +6,8 @@ services:
       - "9090:8080"
       - "7077:7077"
     volumes:
-       - /mnt/spark-apps:/opt/spark-apps
+      - /home/jose8alcaide/Documentos/AI_camera/AI_app/Model:/opt/spark-apps
+      - /home/jose8alcaide/Documentos/AI_camera/AI_app/Model/data:/opt/spark-data
     environment:
       - "SPARK_LOCAL_IP=spark-master"
   spark-worker:
@@ -20,4 +21,5 @@ services:
       - SPARK_DRIVER_MEMORY=128m
       - SPARK_EXECUTOR_MEMORY=256m
     volumes:
-       - /mnt/spark-apps:/opt/spark-apps
+      - /home/jose8alcaide/Documentos/AI_camera/AI_app/Model:/opt/spark-apps
+      - /home/jose8alcaide/Documentos/AI_camera/AI_app/Model/data:/opt/spark-data

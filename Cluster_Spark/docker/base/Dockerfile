@@ -1,4 +1,4 @@
-FROM openjdk:8u212-b04-jdk-stretch
+FROM openjdk:8u212-b04-jdk-slim-buster
 LABEL author="Nathaniel Vala" email="nathanielvala@hotmail.com"
 LABEL version="0.2"
 
@@ -37,13 +37,14 @@ RUN cd "/tmp" && \
 #     apk del .build-dependencies && \
 #     rm -rf "/tmp/"*
 
-
 # Add Dependencies for PySpark
 RUN apt-get install -y python3 python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
 RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1
 
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools
 RUN pip3 install pyspark
-RUN pip3 install tensorflow
+RUN pip3 install tensorflow --upgrade
 RUN pip3 install tensorflowonspark
 RUN pip3 install tensorflow_datasets
 
@@ -54,8 +55,6 @@ RUN export PATH="/usr/local/sbt/bin:$PATH" &&  apt update && apt install ca-cert
 RUN wget --no-verbose http://apache.mirror.iphh.net/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
       && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
       && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
-
-
 
 # Fix the value of PYTHONHASHSEED
 # Note: this is needed when you use Python 3.3 or greater
