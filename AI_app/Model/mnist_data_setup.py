@@ -62,7 +62,7 @@ def main_fun(args, ctx):
     from tensorflow_estimator.python.estimator.export import export_lib
     export_dir = export_lib.get_timestamped_export_dir(args.export_dir)
     tf.keras.experimental.export_saved_model(multi_worker_model, export_dir)
-    # multi_worker_model.save(args.model_dir, save_format='tf')
+    #multi_worker_model.save(args.model_dir, save_format='tf')
 
 
 if __name__ == '__main__':
@@ -80,7 +80,7 @@ if __name__ == '__main__':
   parser.add_argument("--buffer_size", help="size of shuffle buffer", type=int, default=10000)
   parser.add_argument("--cluster_size", help="number of nodes in the cluster", type=int, default=3)
   parser.add_argument("--epochs", help="number of epochs", type=int, default=3)
-  parser.add_argument("--model_dir", help="path to save model/checkpoint", default="mnist_model")
+  parser.add_argument("--model_dir", help="path to save model/checkpoint", default="/opt/spark-data")
   parser.add_argument("--export_dir", help="path to export saved_model", default="mnist_export")
   parser.add_argument("--steps_per_epoch", help="number of steps per epoch", type=int, default=469)
   parser.add_argument("--tensorboard", help="launch tensorboard process", action="store_true")
