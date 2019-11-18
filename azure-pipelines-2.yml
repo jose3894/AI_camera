@@ -1,0 +1,25 @@
+trigger:
+- development
+
+pool: 'GPU Model'
+
+variables:
+  imageName: '$(ID_docker_hub)/ai-camera-model'
+  dockerHub: 'ai-docker'
+  tag: 'latest'
+
+steps:
+
+- task: Docker@2
+  inputs:
+    command: login
+    containerRegistry: $(dockerHub)
+
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    repository: $(imageName)
+    containerRegistry: $(dockerHub)
+    command: build
+    Dockerfile: Dockerfile_gpu_azure
+    tags: $(tag)
