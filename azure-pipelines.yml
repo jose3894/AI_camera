@@ -1,6 +1,3 @@
-trigger:
-- development
-
 pool: 'VM Agent'
 
 variables:
