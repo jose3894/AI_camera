@@ -1,0 +1,29 @@
+FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-utils \
+    ca-certificates \
+    build-essential \
+    git \
+    python3.7 \
+    python3-pip
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+ENV TF_FORCE_GPU_ALLOW_GROWTH true
+
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools
+RUN pip3 install tensorflow-gpu
+RUN pip3 install keras
+RUN pip3 install matplotlib
+RUN pip3 install sklearn
+RUN pip3 install Pillow
+
+COPY ./AI_app/Model /app
+
+WORKDIR /app
+
+ENTRYPOINT ["python3"]
+CMD ["app_Model.py"]
+
