@@ -30,5 +30,5 @@ RUN npm install --save-dev electron
 RUN npm install electron-builder --save-dev
 
 # Launch application
-CMD ["npm","run", "dist"]
-#CMD ["npm","start"]
+#CMD ["npm","run", "dist"]
+CMD ["npm","start"]
