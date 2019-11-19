@@ -1,6 +1,3 @@
-trigger:
-- master
-
 pool: 'RPi Agent Test'
 
 variables:
