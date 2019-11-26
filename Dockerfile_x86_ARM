@@ -83,4 +83,4 @@ WORKDIR /app
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
-CMD ["Testing/IMPLEMENTACION_LOCAL/predecir.py"]
+CMD ["Testing/app_Test.py"]
