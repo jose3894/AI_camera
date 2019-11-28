@@ -35,7 +35,7 @@ ytest=tensorflow.keras.utils.to_categorical(ytest,num_classes)
 # modelo.add(Dropout(0.25))
 # modelo.add(Dense(20))
 # modelo.add(Dropout(0.25))
-# modelo.add(Dense(num_classes,activation='softmax'))
+# modelo.add(Dense(num_classes,activation='softmax'))j
 
 
 modelo=Sequential()
