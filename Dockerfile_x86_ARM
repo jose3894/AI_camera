@@ -83,4 +83,4 @@ RUN ls Testing/LOCAL
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
-CMD ["Testing/IMPLEMENTACION_LOCAL/predecir.py"]
+CMD ["Testing/LOCAL/predecir.py"]
