@@ -77,7 +77,7 @@ RUN python3 -m pip install keras --upgrade
 
 
 COPY ./AI_app /app
-RUN ls /app
+RUN ls /app/Testing
 WORKDIR /app
 
 EXPOSE 5000
