@@ -77,9 +77,9 @@ RUN python3 -m pip install keras --upgrade
 
 
 COPY ./AI_app /app
-RUN ls /app/Testing
-WORKDIR /app
 
+WORKDIR /app
+RUN ls Testing/IMPLEMENTACION_LOCAL
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
