@@ -76,11 +76,11 @@ RUN python3 -m pip install flask --upgrade
 RUN python3 -m pip install keras --upgrade
 
 
-COPY ./AI_app/Testing /app
+COPY ./AI_app /app
 
-WORKDIR /app
+WORKDIR /app/Testing/LOCAL
 
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
-CMD ["LOCAL/predecir.py"]
+CMD ["predecir.py"]
