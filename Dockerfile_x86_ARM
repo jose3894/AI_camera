@@ -75,6 +75,9 @@ RUN python3 -m pip install flask --upgrade
 # Install Keras
 RUN python3 -m pip install keras --upgrade
 
+# Install H5PY
+RUN python3 -m pip install h5py --upgrade
+
 
 COPY ./AI_app /app
 
