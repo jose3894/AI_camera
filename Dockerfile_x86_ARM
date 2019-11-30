@@ -75,7 +75,7 @@ RUN python3 -m pip install flask --upgrade
 # Install Keras
 RUN python3 -m pip install keras --upgrade
 
-RUN apt-get install git && git-lfs
+RUN apt-get install -y git git-lfs
 
 RUN mkdir /project
 RUN cd /project && git init && git clone https://github.com/jose3894/AI_camera.git
