@@ -75,14 +75,25 @@ RUN python3 -m pip install flask --upgrade
 # Install Keras
 RUN python3 -m pip install keras --upgrade
 
-RUN apt-get install -y git
-RUN wget https://dl.google.com/go/go1.13.3.linux-armv6l.tar.gz
-RUN tar -C /usr/local -xzf go1.13.3.linux-armv6l.tar.gz
-RUN export PATH=$PATH:/usr/local/go/bin
-RUN mkdir ~/go
-RUN export GOPATH=~/go
-RUN ~/go get github.com/github/git-lfs
-RUN cp ~/go/bin/git-lfs /usr/local/bin/
+#RUN apt-get install -y git
+#RUN wget https://dl.google.com/go/go1.13.3.linux-armv6l.tar.gz
+#RUN tar -C /usr/local -xzf go1.13.3.linux-armv6l.tar.gz
+#RUN export PATH=$PATH:/usr/local/go/bin
+#RUN mkdir ~/go
+#RUN export GOPATH=~/go
+#RUN go get github.com/github/git-lfs
+#RUN cp ~/go/bin/git-lfs /usr/local/bin/
+
+# install go
+RUN apt-get install golang
+# you may want to grab a coffee at this stage... ;)
+
+# get git-lfs from github
+RUN -i
+RUN mkdir /root/gocode
+RUN export GOPATH=/root/gocode
+RUN go get github.com/github/git-lfs
+RUN cp gocode/bin/git-lfs /usr/bin
 
 RUN mkdir /project
 RUN cd /project && git init && git clone https://github.com/jose3894/AI_camera.git
