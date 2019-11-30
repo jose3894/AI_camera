@@ -6,7 +6,7 @@ from yolo import YOLO#importacion de red yolo
 import json#importacion de libreria de apertura de json
 import time#importacion de libreria de medicion de tiempos
 
-ruta_configuracion = '../configuracion.json'  # ruta a archivo de configuracion
+ruta_configuracion = '/app/Testing/configuracion.json'  # ruta a archivo de configuracion
 ruta_pesos = '../yolo_anchors_5.h5'  # ruta a red yolo ya entrenada
 
 with open(ruta_configuracion) as buffer_configuracion:  # Cargado de fichero de configuracion
@@ -20,11 +20,11 @@ yolo = YOLO(backend=configuracion['model']['backend'],
 
 yolo.cargar_pesos(ruta_pesos)  # Cargado de pesos de red Yolo previamente entrenada
 
-capturador_video = cv2.VideoCapture('../prueba1.mp4')  # apertura de video a procesar
+capturador_video = cv2.VideoCapture('/app/Testing/prueba1.mp4')  # apertura de video a procesar
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # configuracion de codec de video
 videofps = capturador_video.get(cv2.CAP_PROP_FPS)
 ret, frame = capturador_video.read()  # Lectura del primer frame
-video_salida = cv2.VideoWriter('output/salida.mp4', fourcc, videofps,
+video_salida = cv2.VideoWriter('/app/Testing/LOCAL/output/salida.mp4', fourcc, videofps,
                                (frame.shape[0], frame.shape[0]))  # Creacion de video de salida procesado con Yolo
 numero_frames = int(capturador_video.get(cv2.CAP_PROP_FRAME_COUNT))
 print('El numero de frames del video es=' + str(numero_frames))
