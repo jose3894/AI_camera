@@ -85,7 +85,7 @@ RUN python3 -m pip install keras --upgrade
 #RUN cp ~/go/bin/git-lfs /usr/local/bin/
 
 # install go
-RUN apt-get install golang
+RUN apt-get install -y golang
 # you may want to grab a coffee at this stage... ;)
 
 # get git-lfs from github
