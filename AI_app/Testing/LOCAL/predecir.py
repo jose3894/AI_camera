@@ -24,7 +24,7 @@ capturador_video = cv2.VideoCapture('../prueba1.mp4')  # apertura de video a pro
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # configuracion de codec de video
 videofps = capturador_video.get(cv2.CAP_PROP_FPS)
 ret, frame = capturador_video.read()  # Lectura del primer frame
-video_salida = cv2.VideoWriter('../salida.mp4', fourcc, videofps,
+video_salida = cv2.VideoWriter('output/salida.mp4', fourcc, videofps,
                                (frame.shape[0], frame.shape[0]))  # Creacion de video de salida procesado con Yolo
 numero_frames = int(capturador_video.get(cv2.CAP_PROP_FRAME_COUNT))
 print('El numero de frames del video es=' + str(numero_frames))
