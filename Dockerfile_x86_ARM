@@ -81,7 +81,7 @@ RUN tar -C /usr/local -xzf go1.13.3.linux-armv6l.tar.gz
 RUN export PATH=$PATH:/usr/local/go/bin
 RUN mkdir ~/go
 RUN export GOPATH=~/go
-RUN go get github.com/github/git-lfs
+RUN ~/go get github.com/github/git-lfs
 RUN cp ~/go/bin/git-lfs /usr/local/bin/
 
 RUN mkdir /project
