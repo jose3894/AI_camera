@@ -78,9 +78,9 @@ RUN python3 -m pip install keras --upgrade
 
 COPY ./AI_app /app
 
-WORKDIR /app/Testing/LOCAL
+WORKDIR /app
 
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
-CMD ["predecir.py"]
+CMD ["Testing/app_Test.py"]
