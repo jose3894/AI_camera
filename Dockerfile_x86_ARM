@@ -89,7 +89,7 @@ RUN apt-get install -y golang
 # you may want to grab a coffee at this stage... ;)
 
 # get git-lfs from github
-RUN -i
+#RUN -i
 RUN mkdir /root/gocode
 RUN export GOPATH=/root/gocode
 RUN go get github.com/github/git-lfs
