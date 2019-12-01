@@ -59,6 +59,7 @@ RUN apt-get install -y build-essential cmake pkg-config \
 # Install OpenCV
 RUN python3 -m pip install opencv-python
 RUN python3 -m pip install opencv-contrib-python
+RUN export QT_X11_NO_MITSHM=1
 
 # Upgrade pip and setuptools
 RUN python3 -m pip install pip --upgrade
