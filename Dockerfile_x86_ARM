@@ -84,7 +84,8 @@ RUN apt-get install -y golang
 # Install git-lfs
 COPY install_git_lfs.sh .
 RUN chmod +x install_git_lfs.sh
-RUN ./install_git_lfs.sh
+RUN go version
+RUN go install_git_lfs.sh
 
 # Download project with git-lfs
 RUN mkdir /project
