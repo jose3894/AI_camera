@@ -12,22 +12,22 @@ install_git_lfs()
     sudo apt-get --yes --force-yes install git
     mkdir -p $GIT_LFS_BUILD/go
     pushd "$GIT_LFS_BUILD/go"
-        wget https://storage.googleapis.com/golang/go1.6.2.linux-armv6l.tar.gz -O go.tar.gz
+        # clean up go folder
+        sudo rm -rf /usr/local/go
+        # find actual version on https://golang.org/dl/
+        wget https://storage.googleapis.com/golang/go1.10.2.linux-armv6l.tar.gz -O go.tar.gz
         sudo tar -C /usr/local -xzf go.tar.gz
         rm go.tar.gz
         export PATH=$PATH:/usr/local/go/bin
         export GOPATH=$PWD
-        echo "PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc
-        echo "GOPATH=$PWD" >> $HOME/.bashrc
+        echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc
+        echo "export GOPATH=$PWD" >> $HOME/.bashrc
 
         # Download and compile git-lfs
-        mkdir -p src/github.com/github
-        pushd src/github.com/github
-            git clone https://github.com/github/git-lfs
-            pushd git-lfs
-              make
-              sudo mv bin/git-lfs /usr/bin/
-            popd
+        go get github.com/github/git-lfs
+        pushd src/github.com/github/git-lfs
+            script/bootstrap
+            sudo mv bin/git-lfs /usr/bin/
         popd
     popd
     hash -r
