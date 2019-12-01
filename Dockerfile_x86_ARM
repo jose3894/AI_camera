@@ -109,7 +109,7 @@ RUN cp -r /project/AI_camera/AI_app /app
 #COPY ./AI_app /app
 
 WORKDIR /app
-
+RUN export
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
