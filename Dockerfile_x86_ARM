@@ -101,6 +101,9 @@ RUN ls /project
 RUN cp -r /project/AI_camera/AI_app /app
 #COPY ./AI_app /app
 
+# Install FFmpeg
+RUN apt-get install ffmpeg
+
 WORKDIR /app
 EXPOSE 5000
 
