@@ -23,7 +23,7 @@ yolo = YOLO(backend=configuracion['model']['backend'],
 yolo.cargar_pesos(ruta_pesos)  # Cargado de pesos de red Yolo previamente entrenada
 
 capturador_video = cv2.VideoCapture('/app/Testing/prueba1.mp4')  # apertura de video a procesar
-fourcc = cv2.VideoWriter_fourcc(*'MPEG')  # configuracion de codec de video
+fourcc = cv2.VideoWriter_fourcc(*'MPEG4')  # configuracion de codec de video
 videofps = capturador_video.get(cv2.CAP_PROP_FPS)
 ret, frame = capturador_video.read()  # Lectura del primer frame
 video_salida = cv2.VideoWriter('/app/Testing/LOCAL/output/salida.mp4', fourcc, videofps,
