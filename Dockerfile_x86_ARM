@@ -1,4 +1,5 @@
 FROM raspbian/stretch
+FROM golang
 COPY qemu-arm-static /usr/bin
 
 # Install dependencies
