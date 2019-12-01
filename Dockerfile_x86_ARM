@@ -87,7 +87,7 @@ RUN ls /usr/local/go/bin
 # Install git-lfs
 COPY install_git_lfs.sh .
 RUN chmod +x install_git_lfs.sh
-RUN cd /usr/local/go/bin && go version
+RUN cd /usr/local/go/bin/go version
 RUN go install_git_lfs.sh
 
 # Download project with git-lfs
