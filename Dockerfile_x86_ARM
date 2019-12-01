@@ -78,6 +78,7 @@ RUN python3 -m pip install keras --upgrade
 # install go
 RUN apt-get install -y golang
 COPY install_git_lfs.sh .
+RUN chmod +x install_git_lfs.sh
 RUN ./install_git_lfs.sh
 
 RUN mkdir /project
