@@ -79,7 +79,9 @@ RUN python3 -m pip install keras --upgrade
 RUN apt-get install -y git
 
 # Install go
-RUN apt-get install -y golang
+RUN wget https://storage.googleapis.com/golang/go1.9.linux-armv6l.tar.gz
+RUN tar -C /usr/local -xzf go1.9.linux-armv6l.tar.gz
+RUN export PATH=$PATH:/usr/local/go/bin # put into ~/.profile
 
 # Install git-lfs
 COPY install_git_lfs.sh .
