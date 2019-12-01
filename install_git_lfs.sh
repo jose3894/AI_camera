@@ -25,7 +25,7 @@ install_git_lfs()
         pushd src/github.com/github
             git clone https://github.com/github/git-lfs
             pushd git-lfs
-              script/bootstrap
+              make
               sudo mv bin/git-lfs /usr/bin/
             popd
         popd

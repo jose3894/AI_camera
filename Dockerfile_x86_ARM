@@ -88,7 +88,7 @@ RUN ./install_git_lfs.sh
 
 # Download project with git-lfs
 RUN mkdir /project
-RUN cd /project && git init && git clone https://github.com/jose3894/AI_camera.git
+RUN cd /project && git clone https://github.com/jose3894/AI_camera.git
 RUN cd /project && git lfs install && git lfs pull
 RUN cp -r /project/AI_app /app
 #COPY ./AI_app /app
