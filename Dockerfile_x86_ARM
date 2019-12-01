@@ -88,7 +88,15 @@ RUN tar -C /usr/local -xzf go1.9.linux-armv6l.tar.gz
 COPY install_git_lfs.sh .
 RUN chmod +x install_git_lfs.sh
 RUN /usr/local/go/bin/go version
-RUN /usr/local/go/bin/go install_git_lfs.sh
+
+RUN mkdir ~/go
+RUN export GOPATH=~/go
+
+# Download and compile git-lfs.
+RUN /usr/local/go/bin/go get github.com/github/git-lfs
+
+# Add the compiled binary to your path.
+RUN cp ~/go/bin/git-lfs /usr/local/bin/
 
 # Download project with git-lfs
 RUN mkdir /project
