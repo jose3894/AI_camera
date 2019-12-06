@@ -8,7 +8,7 @@ from tensorflow.keras import backend as K
 
 batch_size=100
 num_classes=10
-epochs=6
+epochs=7
 
 filas,columnas= 28,28
 
