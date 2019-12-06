@@ -6,8 +6,6 @@ from yolo import YOLO#importacion de red yolo
 import json#importacion de libreria de apertura de json
 import time#importacion de libreria de medicion de tiempos
 
-os.system('xhost +')
-
 ruta_configuracion = '/app/Testing/configuracion.json'  # ruta a archivo de configuracion
 ruta_pesos = '/app/Testing/yolo_anchors_5.h5'  # ruta a red yolo ya entrenada
 
