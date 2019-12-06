@@ -1,3 +1,6 @@
+trigger:
+- dev_camera_app
+
 pool: 'RPi Agent Test'
 
 variables:
