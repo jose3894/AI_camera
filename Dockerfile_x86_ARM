@@ -89,7 +89,7 @@ RUN export GOPATH=~/go
 RUN /usr/local/go/bin/go version
 
 # Download and compile git-lfs.
-RUN /usr/local/go/bin/go get github.com/github/git-lfs --rev a227ca0
+RUN /usr/local/go/bin/go get github.com/github/git-lfs@2.9.1
 
 # Add the compiled binary to your path.
 RUN cp ~/go/bin/git-lfs /usr/local/bin/
