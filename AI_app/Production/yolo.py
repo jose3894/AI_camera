@@ -8,7 +8,7 @@ import cv2
 from utilidades import decodificacion_salida
 from tensorflow.keras.layers import concatenate
 
-ruta_yolo_backend = '../full_yolo_backend.h5'  # nombre del extractor de características a utilizar
+ruta_yolo_backend = '/app/Production/full_yolo_backend.h5'  # nombre del extractor de características a utilizar
 
 
 class ExtractorCaracteristicasBase(object):  # Clase Base para los posibles extractores de características

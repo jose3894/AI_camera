@@ -6,8 +6,8 @@ from yolo import YOLO#importacion de red yolo
 import json#importacion de libreria de apertura de json
 import time#importacion de libreria de medicion de tiempos
 
-ruta_configuracion = '../configuracion.json'  # ruta a archivo de configuracion
-ruta_pesos = '../yolo_anchors_5.h5'  # ruta a red yolo ya entrenada
+ruta_configuracion = '/app/Production/configuracion.json'  # ruta a archivo de configuracion
+ruta_pesos = '/app/Production/yolo_anchors_5.h5'  # ruta a red yolo ya entrenada
 
 with open(ruta_configuracion) as buffer_configuracion:  # Cargado de fichero de configuracion
     configuracion = json.load(buffer_configuracion)
