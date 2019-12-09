@@ -80,7 +80,6 @@ RUN python3 -m pip install keras --upgrade
 RUN apt-get install -y git
 
 # Install go
-
 RUN wget https://dl.google.com/go/go1.13.5.linux-armv6l.tar.gz
 RUN tar -C /usr/local -xzf go1.13.5.linux-armv6l.tar.gz
 
@@ -89,7 +88,7 @@ RUN mkdir ~/go
 RUN export GOPATH=~/go
 
 # Download and compile git-lfs.
-RUN /usr/local/go/bin/go get -u github.com/github/git-lfs
+RUN /usr/local/go/bin/go get github.com/github/git-lfs
 
 # Add the compiled binary to your path.
 RUN cp ~/go/bin/git-lfs /usr/local/bin/
