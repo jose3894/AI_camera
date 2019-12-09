@@ -26,6 +26,7 @@ app = Flask(__name__)
 
 cap = CameraStream().start()
 
+num_frame = 0
 
 @app.route('/')
 def index():
@@ -34,17 +35,22 @@ def index():
 
 
 def gen_frame():
+    global num_frame
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
+        if num_frame == 0:
+            frame = frame[:, int(frame.shape[1] / 2) - int(frame.shape[0] / 2):int(frame.shape[1] / 2) + int(frame.shape[0] / 2), :]
+            [cajas, caracteristicas] = yolo.predecir(frame, 0.25, 0.4)  # prediccion de yolo
+            imageaux = dibujar_deteccion(frame, cajas, configuracion['model']['etiquetas'])  # dibujado de detecciones de yolo en la imagen
 
-        frame = frame[:, int(frame.shape[1] / 2) - int(frame.shape[0] / 2):int(frame.shape[1] / 2) + int(frame.shape[0] / 2), :]
-        [cajas, caracteristicas] = yolo.predecir(frame, 0.25, 0.4)  # prediccion de yolo
-        imageaux = dibujar_deteccion(frame, cajas, configuracion['model']['etiquetas'])  # dibujado de detecciones de yolo en la imagen
+            convert = cv2.imencode('.jpg', frame)[1].tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
+            num_frame += 1
 
-        convert = cv2.imencode('.jpg', frame)[1].tobytes()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
+        if num_frame == 10:
+            num_frame = 0
 
 
 @app.route('/video_feed')
