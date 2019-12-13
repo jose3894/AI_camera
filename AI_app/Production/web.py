@@ -2,31 +2,60 @@ from flask import Flask, render_template, Response
 from camera import CameraStream
 import cv2
 
-import numpy as np #importacion de numpy
-from utilidades import dibujar_deteccion #importación de libreria de utilidades
-from yolo import YOLO#importacion de red yolo
-import json#importacion de libreria de apertura de json
-import time#importacion de libreria de medicion de tiempos
+# START YOLO
+import argparse
+from os import path
+import time
+import logging
+import sys
+import numpy as np
+import cv2
+#from picamera.array import PiRGBArray
+#from picamera import PiCamera
 
-ruta_configuracion = '/app/Production/configuracion.json'  # ruta a archivo de configuracion
-ruta_pesos = '/app/Production/yolo_anchors_5.h5'  # ruta a red yolo ya entrenada
+from object_detector_detection_api import ObjectDetectorDetectionAPI
+from yolo_darfklow import YOLODarkflowDetector
+from object_detector_detection_api_lite import ObjectDetectorLite
+from utils.utils import Models
+from detection_stream import DetectionStream
 
-with open(ruta_configuracion) as buffer_configuracion:  # Cargado de fichero de configuracion
-    configuracion = json.load(buffer_configuracion)
+basepath = path.dirname(__file__)
 
-yolo = YOLO(backend=configuracion['model']['backend'],
-            tamano_entrada=configuracion['model']['tamano_entrada'],
-            etiquetas=configuracion['model']['etiquetas'],
-            max_cajas_por_imagen=configuracion['model']['max_cajas_por_imagen'],
-            tamanos_base=configuracion['model']['tamanos_base'])  # Creacion del modelo Yolo segun el fichero de configuracion
+# initiate the parser
+parser = argparse.ArgumentParser(prog='test_models.py')
 
-yolo.cargar_pesos(ruta_pesos)  # Cargado de pesos de red Yolo previamente entrenada
+# add arguments
+parser.add_argument("--model_name", "-mn", type=Models.from_string,
+                    required=True, choices=list(Models),
+                    help="name of detection model: {}".format(list(Models)))
+parser.add_argument("--graph_path", "-gp", type=str, required=False,
+                    default=path.join(basepath, "frozen_inference_graph.pb"),
+                    help="path to ssdlight model frozen graph *.pb file")
+parser.add_argument("--cfg_path", "-cfg", type=str, required=False,
+                    default=path.join(basepath, "tiny-yolo-voc.cfg"),
+                    help="path to yolo *.cfg file")
+parser.add_argument("--weights_path", "-w", type=str, required=False,
+                    default=path.join(basepath, "tiny-yolo-voc.weights"),
+                    help="path to yolo weights *.weights file")
+
+# read arguments from the command line
+args = parser.parse_args()
+
+# initialize detector
+logger.info('Model loading...')
+if args.model_name == Models.ssd_lite:
+    predictor = ObjectDetectorDetectionAPI(args.graph_path)
+elif args.model_name == Models.tiny_yolo:
+    predictor = YOLODarkflowDetector(args.cfg_path, args.weights_path)
+elif args.model_name == Models.tf_lite:
+    predictor = ObjectDetectorLite()
+
+# END YOLO
 
 app = Flask(__name__)
 
 cap = CameraStream().start()
 
-num_frame = 0
 
 @app.route('/')
 def index():
@@ -35,22 +64,14 @@ def index():
 
 
 def gen_frame():
-    global num_frame
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
-        if num_frame == 0:
-            frame = frame[:, int(frame.shape[1] / 2) - int(frame.shape[0] / 2):int(frame.shape[1] / 2) + int(frame.shape[0] / 2), :]
-            [cajas, caracteristicas] = yolo.predecir(frame, 0.25, 0.4)  # prediccion de yolo
-            imageaux = dibujar_deteccion(frame, cajas, configuracion['model']['etiquetas'])  # dibujado de detecciones de yolo en la imagen
+        frame = DetectionStream.detect(frame, predictor)
+        convert = cv2.imencode('.jpg', frame)[1].tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
 
-            convert = cv2.imencode('.jpg', frame)[1].tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
-            num_frame += 1
-
-        if num_frame == 10:
-            num_frame = 0
 
 
 @app.route('/video_feed')
