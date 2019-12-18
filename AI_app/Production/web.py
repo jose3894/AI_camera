@@ -20,6 +20,7 @@ from utils.utils import Models
 from detection_stream import DetectionStream
 
 basepath = path.dirname(__file__)
+print(basepath)
 
 # initiate the parser
 parser = argparse.ArgumentParser(prog='test_models.py')
@@ -41,14 +42,16 @@ parser.add_argument("--weights_path", "-w", type=str, required=False,
 # read arguments from the command line
 args = parser.parse_args()
 
-# initialize detector
-logger.info('Model loading...')
-if args.model_name == Models.ssd_lite:
-    predictor = ObjectDetectorDetectionAPI(args.graph_path)
-elif args.model_name == Models.tiny_yolo:
-    predictor = YOLODarkflowDetector(args.cfg_path, args.weights_path)
-elif args.model_name == Models.tf_lite:
-    predictor = ObjectDetectorLite()
+print('Model loading...')
+graph_path = r'/app/Production/frozen_inference_graph.pb'
+cfg_path = r'/app/Production/tiny-yolo-voc.cfg'
+weights_path = r'/app/Production/tiny-yolo-voc.weights'
+#if args.model_name == Models.ssd_lite:
+#    predictor = ObjectDetectorDetectionAPI(graph_path)
+#elif args.model_name == Models.tiny_yolo:
+predictor = YOLODarkflowDetector(cfg_path, weights_path)
+#elif args.model_name == Models.tf_lite:
+#    predictor = ObjectDetectorLite()
 
 # END YOLO
 

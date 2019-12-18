@@ -14,19 +14,28 @@ from object_detector_detection_api_lite import ObjectDetectorLite
 from utils.utils import Models
 
 
-
-basepath = path.dirname(__file__)
-
 class DetectionStream:
 
     def detect(self, frame, predictor):
-        image = frame
+
+        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        dim = (416, 416)
+        image = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
+        h, w, _ = image.shape
+
         result = predictor.detect(image)
 
         for obj in result:
-
             cv2.rectangle(image, obj[0], obj[1], (0, 255, 0), 2)
+            cv2.putText(image, '{}: {:.2f}'.format(obj[3], obj[2]),
+                        (obj[0][0], obj[0][1] - 5),
+                        cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 2)
 
-        return image
+        dim = (640, 480)
+        image = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+
+        frame = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+        return frame
 
 
