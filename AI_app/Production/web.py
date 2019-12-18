@@ -72,6 +72,7 @@ def gen_frame():
         frame = cap.read()
         frame = DetectionStream.detect(frame, predictor)
         convert = cv2.imencode('.jpg', frame)[1].tobytes()
+        time.sleep(2)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
 
