@@ -53,6 +53,7 @@ predictor = YOLODarkflowDetector(cfg_path, weights_path)
 #elif args.model_name == Models.tf_lite:
 #    predictor = ObjectDetectorLite()
 
+count_img = 0
 # END YOLO
 
 app = Flask(__name__)
@@ -67,12 +68,16 @@ def index():
 
 
 def gen_frame():
+    global count_img
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
-        frame = DetectionStream.detect(frame, predictor)
+
+        frame = DetectionStream.detect(frame, predictor, count_img)
+        if count_img < 31:
+            count_img += 1
+
         convert = cv2.imencode('.jpg', frame)[1].tobytes()
-        time.sleep(2)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
 
