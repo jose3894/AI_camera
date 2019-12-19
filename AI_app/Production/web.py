@@ -1,8 +1,6 @@
 from flask import Flask, render_template, Response
 from camera import CameraStream
 import cv2
-
-
 app = Flask(__name__)
 
 cap = CameraStream().start()
@@ -18,11 +16,9 @@ def gen_frame():
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
-
         convert = cv2.imencode('.jpg', frame)[1].tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
-
 
 
 @app.route('/video_feed')
