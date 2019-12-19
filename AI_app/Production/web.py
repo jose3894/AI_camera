@@ -94,7 +94,8 @@ def gen_frame():
         frame = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         if count_img < 30:
-            cv2.imwrite(r'/output/img' + str(count_img) + '.jpg', frame)
+            convert = cv2.imencode('.jpg', frame)
+            cv2.imwrite(r'/output/img' + str(count_img) + '.jpg', convert)
         if count_img < 31:
             count_img += 1
 
