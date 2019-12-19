@@ -103,10 +103,10 @@ RUN rm -r /project
 RUN apt-get install -y ffmpeg
 
 # Install Darkflow
-RUN python3 -m pip install Cython
-RUN git clone https://github.com/thtrieu/darkflow.git
-RUN cd darkflow && python3 setup.py build_ext --inplace
-RUN cd darkflow && python3 -m pip install .
+#RUN python3 -m pip install Cython
+#RUN git clone https://github.com/thtrieu/darkflow.git
+#RUN cd darkflow && python3 setup.py build_ext --inplace
+#RUN cd darkflow && python3 -m pip install .
 
 WORKDIR /app
 
