@@ -73,7 +73,7 @@ def gen_frame():
     while cap:
         frame = cap.read()
 
-        frame = DetectionStream.detect(frame, predictor, count_img)
+        frame = DetectionStream().detect(frame, predictor, count_img)
         if count_img < 31:
             count_img += 1
 
