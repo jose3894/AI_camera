@@ -94,8 +94,8 @@ RUN cp ~/go/bin/git-lfs /usr/local/bin/
 # Download project with git-lfs
 RUN mkdir /project
 RUN cd /project && git init && git lfs install
-#RUN cd /project && git lfs clone -b dev_camera_app https://github.com/jose3894/AI_camera.git
-RUN cd /project && git lfs clone https://github.com/jose3894/AI_camera.git
+RUN cd /project && git lfs clone -b dev_camera_app https://github.com/jose3894/AI_camera.git
+#RUN cd /project && git lfs clone https://github.com/jose3894/AI_camera.git
 RUN ls /project
 RUN cp -r /project/AI_camera/AI_app /app
 RUN rm -r /project
