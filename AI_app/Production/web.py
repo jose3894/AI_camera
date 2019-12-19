@@ -8,7 +8,7 @@ import numpy as np
 app = Flask(__name__)
 
 cap = CameraStream().start()
-"""
+
 MODEL_NAME = r'/app/Production/Sample_TF_model'
 GRAPH_NAME = 'detect.tflite'
 LABELMAP_NAME = 'labelmap.txt'
@@ -29,7 +29,7 @@ with open(PATH_TO_LABELS, 'r') as f:
 
 if labels[0] == '???':
     del(labels[0])
-
+"""
 interpreter = Interpreter(model_path=PATH_TO_CKPT)
 interpreter.allocate_tensors()
 
