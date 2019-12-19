@@ -33,7 +33,7 @@ if labels[0] == '???':
     del(labels[0])
 
 interpreter = Interpreter(model_path=PATH_TO_CKPT)
-"""
+
 interpreter.allocate_tensors()
 
 # Get model details
@@ -50,7 +50,7 @@ input_std = 127.5
 # Initialize frame rate calculation
 frame_rate_calc = 1
 freq = cv2.getTickFrequency()
-"""
+
 @app.route('/')
 def index():
     """Video streaming home page."""
@@ -68,7 +68,7 @@ def gen_frame():
 
 
 
-        """
+
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
@@ -119,9 +119,9 @@ def gen_frame():
 
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
-        """
 
-        convert = cv2.imencode('.jpg', frame2)[1].tobytes()
+
+        convert = cv2.imencode('.jpg', frame)[1].tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
         """
