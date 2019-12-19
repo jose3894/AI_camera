@@ -61,6 +61,7 @@ def gen_frame():
         t1 = cv2.getTickCount()
 
         frame1 = cap.read()
+        frame2 = frame1
 
 
 
@@ -117,7 +118,7 @@ def gen_frame():
 
 
 
-        convert = cv2.imencode('.jpg', frame)[1].tobytes()
+        convert = cv2.imencode('.jpg', frame2)[1].tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
 
