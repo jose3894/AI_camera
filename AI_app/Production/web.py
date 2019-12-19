@@ -2,8 +2,8 @@ from flask import Flask, render_template, Response
 from camera import CameraStream
 import cv2
 from os.path import join
-#from tensorflow.lite.python.interpreter import Interpreter
-from tflite_runtime.interpreter import Interpreter
+from tensorflow.lite.python.interpreter import Interpreter
+
 import numpy as np
 
 app = Flask(__name__)
