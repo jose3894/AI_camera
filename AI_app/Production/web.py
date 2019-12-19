@@ -10,8 +10,8 @@ app = Flask(__name__)
 cap = CameraStream().start()
 
 
-options = {"model": "/app/Production/tiny-yolo-voc.cfg",
-           "load": "/app/Production/tiny-yolo-voc.weights",
+options = {"model": r"/app/Production/cfg/tiny-yolo-voc.cfg",
+           "load": r"/app/Production/tiny-yolo-voc.weights",
            "threshold": 0.1}
 
 tfnet = TFNet(options)
@@ -45,6 +45,7 @@ def index():
 
 
 def gen_frame():
+    global tfnet
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
