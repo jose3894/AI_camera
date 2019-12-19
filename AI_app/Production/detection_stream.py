@@ -5,7 +5,7 @@ import logging
 import sys
 import numpy as np
 import cv2
-from os import makedirs
+from os import makedirs, system
 from os.path import exists
 #from picamera.array import PiRGBArray
 #from picamera import PiCamera
@@ -19,7 +19,7 @@ from utils.utils import Models
 class DetectionStream:
 
     def detect(self, frame, predictor, count_img):
-
+        system("echo detection")
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         dim = (416, 416)
         image = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
