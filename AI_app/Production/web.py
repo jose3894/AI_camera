@@ -72,7 +72,7 @@ def gen_frame():
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
-        system("echo read")
+        system("echo readdd")
         frame = DetectionStream().detect(frame, predictor, count_img)
         if count_img < 31:
             count_img += 1
