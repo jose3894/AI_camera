@@ -73,7 +73,28 @@ def gen_frame():
     while cap:
         frame = cap.read()
         system('echo readdd')
-        frame = DetectionStream().detect(frame, predictor, count_img)
+        #frame = DetectionStream().detect(frame, predictor, count_img)
+        system("echo detection")
+        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        dim = (416, 416)
+        image = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+        h, w, _ = image.shape
+
+        result = predictor.detect(image)
+
+        for obj in result:
+            cv2.rectangle(image, obj[0], obj[1], (0, 255, 0), 2)
+            cv2.putText(image, '{}: {:.2f}'.format(obj[3], obj[2]),
+                        (obj[0][0], obj[0][1] - 5),
+                        cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 2)
+
+        dim = (640, 480)
+        image = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+
+        frame = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+        if count_img < 30:
+            cv2.imwrite(r'/output/img' + str(count_img) + '.jpg', frame)
         if count_img < 31:
             count_img += 1
 
