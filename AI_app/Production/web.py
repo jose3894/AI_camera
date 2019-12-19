@@ -4,7 +4,7 @@ import cv2
 
 # START YOLO
 import argparse
-from os import path
+from os import path, system
 import time
 import logging
 import sys
@@ -72,7 +72,7 @@ def gen_frame():
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
-
+        system("echo read")
         frame = DetectionStream().detect(frame, predictor, count_img)
         if count_img < 31:
             count_img += 1
