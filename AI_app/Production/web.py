@@ -55,7 +55,7 @@ predictor = YOLODarkflowDetector(cfg_path, weights_path)
 
 count_img = 0
 # END YOLO
-
+system('echo video')
 app = Flask(__name__)
 
 cap = CameraStream().start()
