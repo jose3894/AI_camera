@@ -64,15 +64,15 @@ RUN python3 -m pip install pip --upgrade
 RUN python3 -m pip install setuptools --upgrade
 
 # Install Tensorflow
-RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp35-none-linux_armv7l.whl
-RUN pip3 install tensorflow-1.13.1-cp35-none-linux_armv7l.whl
-RUN python3 -m pip install tensorflow
+#RUN wget https://www.piwheels.org/simple/tensorflow/tensorflow-1.13.1-cp35-none-linux_armv7l.whl
+#RUN pip3 install tensorflow-1.13.1-cp35-none-linux_armv7l.whl
+#RUN python3 -m pip install tensorflow
 
 # Install Flask
 RUN python3 -m pip install flask --upgrade
 
 # Install Keras
-RUN python3 -m pip install keras --upgrade
+#RUN python3 -m pip install keras --upgrade
 
 # Install Git
 RUN apt-get install -y git
