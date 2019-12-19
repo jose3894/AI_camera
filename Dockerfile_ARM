@@ -74,8 +74,8 @@ RUN python3 -m pip install flask --upgrade
 # Install Keras
 RUN python3 -m pip install keras --upgrade
 
-## Install Git
-#RUN apt-get install -y git
+# Install Git
+RUN apt-get install -y git
 
 ## Install go
 #RUN wget https://dl.google.com/go/go1.13.5.linux-armv6l.tar.gz
