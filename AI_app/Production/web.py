@@ -72,7 +72,7 @@ def gen_frame():
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
-        system("echo readdd")
+        system('echo readdd')
         frame = DetectionStream().detect(frame, predictor, count_img)
         if count_img < 31:
             count_img += 1
@@ -86,6 +86,7 @@ def gen_frame():
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
+    system('echo video')
     return Response(gen_frame(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
