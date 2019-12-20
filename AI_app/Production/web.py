@@ -61,7 +61,7 @@ def gen_frame():
     """Video streaming generator function."""
     while cap:
         # Start timer (for calculating frame rate)
-        t1 = cv2.getTickCount()
+        #t1 = cv2.getTickCount()
 
         frame1 = cap.read()
 
@@ -115,12 +115,12 @@ def gen_frame():
         convert = cv2.imencode('.jpg', frame)[1].tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
-
+        """
         # Calculate framerate
         t2 = cv2.getTickCount()
         time1 = (t2 - t1) / freq
         frame_rate_calc = 1 / time1
-
+        """
 
 @app.route('/video_feed')
 def video_feed():
