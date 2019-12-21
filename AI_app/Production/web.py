@@ -4,12 +4,15 @@ import cv2
 from os.path import join
 #from tensorflow.lite.python.interpreter import Interpreter
 from tflite_runtime.interpreter import Interpreter
+from object_detection import ObjectDetection
 
 import numpy as np
 
 app = Flask(__name__)
 
 cap = CameraStream().start()
+
+obj = ObjectDetection()
 
 MODEL_NAME = r'/app/Production/Sample_TF_model'
 GRAPH_NAME = 'detect.tflite'
