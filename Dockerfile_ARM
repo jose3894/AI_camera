@@ -111,7 +111,7 @@ RUN cd darkflow && python3 setup.py build_ext --inplace
 RUN cd darkflow && python3 -m pip install .
 
 # Install YAML
-RUN python3 -m pip install yaml
+RUN python3 -m pip install pyyaml
 
 COPY ./AI_app /app
 
