@@ -7,7 +7,7 @@ from tflite_runtime.interpreter import Interpreter
 
 # START Open configuration files
 settings_file = {}
-SETTINGS_FILE = "/app/Producion/setting.yaml"
+SETTINGS_FILE = "/app/Production/setting.yaml"
 
 try:
     with open(SETTINGS_FILE, 'r') as file:
