@@ -7,7 +7,7 @@ from tflite_runtime.interpreter import Interpreter
 
 # START Open configuration files
 settings_file = {}
-SETTINGS_FILE = "setting.yaml"
+SETTINGS_FILE = "/app/Producion/setting.yaml"
 
 try:
     with open(SETTINGS_FILE, 'r') as file:
@@ -18,8 +18,6 @@ try:
 except IOError:
     print("WARNING, no settings.yaml in directory")
     raise
-
-
 # END Open configuration files
 
 
