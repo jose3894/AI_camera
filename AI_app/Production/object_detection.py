@@ -3,7 +3,7 @@ import numpy as np
 from os.path import join
 from tflite_runtime.interpreter import Interpreter
 
-MODEL_NAME = "/app/Production/Sample_TF_model"
+MODEL_NAME = "/app/Production/obj_detection_model"
 GRAPH_NAME = "detect.tflite"
 LABELMAP_NAME = "labelmap.txt"
 min_conf_threshold = 0.5
@@ -11,8 +11,8 @@ RESOLUTION = "640x480"
 
 
 class ObjectDetection:
-    def __init__(self):
 
+    def __init__(self):
         resW, resH = RESOLUTION.split('x')
         self.imW, self.imH = int(resW), int(resH)
 
