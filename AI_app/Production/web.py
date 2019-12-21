@@ -20,8 +20,9 @@ def gen_frame():
     """Video streaming generator function."""
     while cap:
         frame = cap.read()
+        frame1 = frame
         frame = obj.predict(frame)
-        convert = cv2.imencode('.jpg', frame)[1].tobytes()
+        convert = cv2.imencode('.jpg', frame1)[1].tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + convert + b'\r\n') # concate frame one by one and show result
 
