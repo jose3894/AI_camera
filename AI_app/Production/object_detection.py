@@ -15,12 +15,8 @@ class ObjectDetection:
         self.imW = 0
         self.imH = 0
         self.labels = []
-        self.interpreter
-        self.input_details
-        self.output_details
         self.height = 0
         self.width = 0
-        self.floating_model
         self.input_mean = 0
         self.input_std = 0
 
