@@ -1,24 +1,13 @@
 import cv2
 import numpy as np
-import yaml
 from os.path import join
 from tflite_runtime.interpreter import Interpreter
 
-
-# START Open configuration files
-settings_file = {}
-SETTINGS_FILE = "/app/Production/setting.yaml"
-
-try:
-    with open(SETTINGS_FILE, 'r') as file:
-        try:
-            settings_file = yaml.safe_load(file)
-        except yaml.YAMLError as error:
-            print(error)
-except IOError:
-    print("WARNING, no settings.yaml in directory")
-    raise
-# END Open configuration files
+MODEL_NAME = "/app/Production/Sample_TF_model"
+GRAPH_NAME = "detect.tflite"
+LABELMAP_NAME = "labelmap.txt"
+min_conf_threshold = 0.5
+RESOLUTION = "640x480"
 
 
 class ObjectDetection:
@@ -35,14 +24,14 @@ class ObjectDetection:
         self.input_mean = 0
         self.input_std = 0
 
-        resW, resH = settings_file['RESOLUTION'].split('x')
+        resW, resH = RESOLUTION.split('x')
         self.imW, self.imH = int(resW), int(resH)
 
         # Path to .tflite file, which contains the model that is used for object detection
-        PATH_TO_CKPT = join(settings_file['MODEL_NAME'], settings_file['GRAPH_NAME'])
+        PATH_TO_CKPT = join(MODEL_NAME, GRAPH_NAME)
 
         # Path to label map file
-        PATH_TO_LABELS = join(settings_file['MODEL_NAME'], settings_file['LABELMAP_NAME'])
+        PATH_TO_LABELS = join(MODEL_NAME, LABELMAP_NAME)
 
         # Load the label map
         with open(PATH_TO_LABELS, 'r') as f:
@@ -88,7 +77,7 @@ class ObjectDetection:
 
         # Loop over all detections and draw detection box if confidence is above minimum threshold
         for i in range(len(scores)):
-            if ((scores[i] > settings_file['min_conf_threshold']) and (scores[i] <= 1.0)):
+            if ((scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
                 # Get bounding box coordinates and draw box
                 # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
                 ymin = int(max(1, (boxes[i][0] * self.imH)))
