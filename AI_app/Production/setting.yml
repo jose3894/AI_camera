@@ -1,0 +1,5 @@
+"MODEL_NAME"         : "/app/Production/Sample_TF_model"
+"GRAPH_NAME"         : "detect.tflite"
+"LABELMAP_NAME"      : "labelmap.txt"
+"min_conf_threshold" : 0.5
+"RESOLUTION"         : "640x480"
