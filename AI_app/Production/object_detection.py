@@ -12,13 +12,6 @@ RESOLUTION = "640x480"
 
 class ObjectDetection:
     def __init__(self):
-        self.imW = 0
-        self.imH = 0
-        self.labels = []
-        self.height = 0
-        self.width = 0
-        self.input_mean = 0
-        self.input_std = 0
 
         resW, resH = RESOLUTION.split('x')
         self.imW, self.imH = int(resW), int(resH)
