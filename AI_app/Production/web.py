@@ -34,5 +34,4 @@ def video_feed():
 
 
 if __name__ == '__main__':
-    obj.initialize_model()
     app.run(host='0.0.0.0', threaded=True)

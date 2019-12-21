@@ -35,7 +35,6 @@ class ObjectDetection:
         self.input_mean = 0
         self.input_std = 0
 
-    def initialize_model(self):
         resW, resH = settings_file['RESOLUTION'].split('x')
         self.imW, self.imH = int(resW), int(resH)
 
@@ -66,10 +65,6 @@ class ObjectDetection:
 
         self.input_mean = 127.5
         self.input_std = 127.5
-
-        # Initialize frame rate calculation
-        #frame_rate_calc = 1
-        #freq = cv2.getTickFrequency()
 
     def predict(self, frame):
         # Acquire frame and resize to expected shape [1xHxWx3]
