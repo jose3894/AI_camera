@@ -95,7 +95,7 @@ class ObjectDetection:
 
         # Loop over all detections and draw detection box if confidence is above minimum threshold
         for i in range(len(scores)):
-            if ((scores[i] > self.min_conf_threshold) and (scores[i] <= 1.0)):
+            if ((scores[i] > settings_file['min_conf_threshold']) and (scores[i] <= 1.0)):
                 # Get bounding box coordinates and draw box
                 # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
                 ymin = int(max(1, (boxes[i][0] * self.imH)))
