@@ -6,7 +6,7 @@ from tflite_runtime.interpreter import Interpreter
 MODEL_NAME = "/app/Production/obj_detection_model"
 GRAPH_NAME = "detect.tflite"
 LABELMAP_NAME = "labelmap.txt"
-min_conf_threshold = 0.5
+THRESHOLD = 0.5
 RESOLUTION = "640x480"
 
 
@@ -45,12 +45,10 @@ class ObjectDetection:
         self.input_std = 127.5
 
     def predict(self, frame):
-        # Acquire frame and resize to expected shape [1xHxWx3]
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame_resized = cv2.resize(frame_rgb, (self.width, self.height))
         input_data = np.expand_dims(frame_resized, axis=0)
 
-        # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
         if self.floating_model:
             input_data = (np.float32(input_data) - self.input_mean) / self.input_std
 
@@ -62,11 +60,10 @@ class ObjectDetection:
         boxes = self.interpreter.get_tensor(self.output_details[0]['index'])[0]  # Bounding box coordinates of detected objects
         classes = self.interpreter.get_tensor(self.output_details[1]['index'])[0]  # Class index of detected objects
         scores = self.interpreter.get_tensor(self.output_details[2]['index'])[0]  # Confidence of detected objects
-        # num = interpreter.get_tensor(output_details[3]['index'])[0]  # Total number of detected objects (inaccurate and not needed)
 
         # Loop over all detections and draw detection box if confidence is above minimum threshold
         for i in range(len(scores)):
-            if ((scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
+            if ((scores[i] > THRESHOLD) and (scores[i] <= 1.0)):
                 # Get bounding box coordinates and draw box
                 # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
                 ymin = int(max(1, (boxes[i][0] * self.imH)))
