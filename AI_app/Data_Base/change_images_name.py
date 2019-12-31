@@ -2,9 +2,9 @@ from os import listdir
 from os.path import join, isfile
 from shutil import copy2
 
-PATH_CHANGE = r'/home/jose8alcaide/Descargas/frame-extraction-master/data/images/riada5'
-SAVE_PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/river'
-dest_counter = 2436
+PATH_CHANGE = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/Accidents3'
+SAVE_PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/Accidents_total'
+dest_counter = 904
 
 for file in listdir(PATH_CHANGE):
         if isfile(join(PATH_CHANGE, file)):
