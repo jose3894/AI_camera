@@ -2,7 +2,7 @@ from os import walk, remove
 from os.path import join
 import cv2
 
-PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Model/db_images2'
+PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Model/db_images/violence/'
 counter = 0
 
 for path, dirs, files in walk(PATH):

@@ -6,11 +6,11 @@ import re
 import numpy as np
 import random
 
-PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base'
+PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/guns'
 PATH_SAVE = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Model'
-width = 320
-height = 200
-folder_db = 'db_images'
+width = 224
+height = 224
+folder_db = 'db_images3'
 
 # Delete old folder save
 if exists(join(PATH_SAVE, folder_db)):
@@ -42,6 +42,7 @@ for path, dirs, files in walk(PATH):
                 counter += 1
 
                 # Translate and save image
+                """
                 tx = random.randint(0, 100)
                 ty = random.randint(0, 100)
                 M = np.float32([[1, 0, tx], [0, 1, ty]])
@@ -49,11 +50,14 @@ for path, dirs, files in walk(PATH):
                 cv2.imwrite(join(path_save, name_file + '_T_.png'), translate_img)
 
                 counter += 1
+                """
 
                 # Rotate and save image
                 rows, cols = img.shape[:2]
                 scale = random.uniform(0.8, 2)
-                angle = random.randint(20, 360)
+                #angle = random.randint(20, 360)
+                angle = random.randint(1, 3)
+                angle = angle * 90
                 M = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, scale)
                 rotate_img = cv2.warpAffine(img, M, (cols, rows))
                 cv2.imwrite(join(path_save, name_file + '_Rot_.png'), rotate_img)
@@ -67,12 +71,14 @@ for path, dirs, files in walk(PATH):
                 counter += 1
 
                 # Noise
+                """
                 gauss = np.random.normal(0, 1, img.size)
                 gauss = gauss.reshape(img.shape[0], img.shape[1], img.shape[2]).astype('uint8')
                 n_img = cv2.add(img, gauss)
                 cv2.imwrite(join(path_save, name_file + '_N_.png'), n_img)
-
+                
                 counter += 1
+                """
                 print('\r' + str(counter) + '. ' + file, end='')
             except:
                 print("\nCan not make new images: " + file)

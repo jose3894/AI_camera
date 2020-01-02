@@ -9,8 +9,8 @@ import cv2
 import os
 import numpy as np
 
-PATH = r"/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/Accidents3/"
-URL_FILE = r"/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/urls3.txt"
+PATH = r"/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/guns/"
+URL_FILE = r"/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/google_images/urls4.txt"
 
 
 # grab the list of URLs from the input file, then initialize the
