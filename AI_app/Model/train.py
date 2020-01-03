@@ -10,12 +10,12 @@ matplotlib.use("Agg")
 # import the necessary packages
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import VGG16
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Input
+from tensorflow.keras.layers import Dropout, Flatten, Dense, Input
+#from tensorflow.keras.layers import Flatten
+#from tensorflow.keras.layers import Dense
+#from tensorflow.keras.layers import Input
 from tensorflow.keras.models import Model
-from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.optimizers import SGD, Adam
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
@@ -25,17 +25,11 @@ from pyimagesearch import config
 from imutils import paths
 import matplotlib.pyplot as plt
 import numpy as np
-import argparse
-import pickle
 import cv2
 import sys
 import os
 
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-f", "--lr-find", type=int, default=0,
-                help="whether or not to find optimal learning rate")
-args = vars(ap.parse_args())
+LEARNING_RATE_FIND = False
 
 # grab the paths to all images in our dataset directory and initialize
 # our lists of images and class labels
@@ -112,12 +106,14 @@ for layer in baseModel.layers:
 # layers to being non-trainable
 print("[INFO] compiling model...")
 opt = SGD(lr=config.MIN_LR, momentum=0.9)
-model.compile(loss="categorical_crossentropy", optimizer=opt,
+Adam = Adam(lr=config.MIN_LR, beta_1=0.9, beta_2=0.9)
+
+model.compile(loss="categorical_crossentropy", optimizer=Adam,
               metrics=["accuracy"])
 
 # check to see if we are attempting to find an optimal learning rate
 # before training for the full number of epochs
-if args["lr_find"] > 0:
+if LEARNING_RATE_FIND:
     # initialize the learning rate finder and then train with learning
     # rates ranging from 1e-10 to 1e+1
     print("[INFO] finding learning rate...")

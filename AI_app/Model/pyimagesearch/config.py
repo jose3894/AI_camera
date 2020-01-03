@@ -24,13 +24,13 @@ CLR_METHOD = "triangular"
 NUM_EPOCHS = 48
 
 # set the path to the serialized model after training
-MODEL_PATH = os.path.sep.join(["output4", "camera.model"])
+MODEL_PATH = os.path.sep.join(["Adam_VGG16", "camera.model"])
 
 # define the path to the output learning rate finder plot, training
 # history plot and cyclical learning rate plot
-LRFIND_PLOT_PATH = os.path.sep.join(["output4", "lrfind_plot.png"])
-TRAINING_PLOT_PATH = os.path.sep.join(["output4", "training_plot.png"])
-CLR_PLOT_PATH = os.path.sep.join(["output4", "clr_plot.png"])
+LRFIND_PLOT_PATH = os.path.sep.join(["Adam_VGG16", "lrfind_plot.png"])
+TRAINING_PLOT_PATH = os.path.sep.join(["Adam_VGG16", "training_plot.png"])
+CLR_PLOT_PATH = os.path.sep.join(["Adam_VGG16", "clr_plot.png"])
 
 """
 

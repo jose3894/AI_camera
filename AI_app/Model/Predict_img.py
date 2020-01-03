@@ -1,7 +1,3 @@
-# USAGE
-# python predict.py --input terrific_natural_disasters_compilation.mp4 --output output/natural_disasters.avi
-
-# import the necessary packages
 from tensorflow.keras.models import load_model
 from pyimagesearch import config
 from collections import deque
