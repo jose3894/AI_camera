@@ -9,7 +9,7 @@ matplotlib.use("Agg")
 
 # import the necessary packages
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.applications import VGG16
+from tensorflow.keras.applications import VGG16, resnet50, inception_resnet_v2, inception_v3, xception
 from tensorflow.keras.layers import Dropout, Flatten, Dense, Input
 #from tensorflow.keras.layers import Flatten
 #from tensorflow.keras.layers import Dense
@@ -28,8 +28,16 @@ import numpy as np
 import cv2
 import sys
 import os
+from shutil import rmtree
+from os.path import exists, basename
 
 LEARNING_RATE_FIND = False
+
+# Make new folder
+folder_path = config.MODEL_PATH.split('/' + basename(config.MODEL_PATH))[0]
+if not exists(folder_path):
+    print("Making folder: " + folder_path)
+    os.makedirs(folder_path)
 
 # grab the paths to all images in our dataset directory and initialize
 # our lists of images and class labels
@@ -82,7 +90,8 @@ aug = ImageDataGenerator(
 
 # load the VGG16 network, ensuring the head FC layer sets are left
 # off
-baseModel = VGG16(weights="imagenet", include_top=False,
+#baseModel = VGG16(weights="imagenet", include_top=False, input_tensor=Input(shape=(224, 224, 3)))
+baseModel = inception_v3.InceptionV3(weights="imagenet", include_top=False,
                   input_tensor=Input(shape=(224, 224, 3)))
 
 # construct the head of the model that will be placed on top of the

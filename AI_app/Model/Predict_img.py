@@ -7,7 +7,7 @@ from shutil import rmtree
 from os.path import join, exists, basename
 import cv2
 
-# Delete old folder save
+# Delete old folder save and make new one
 if exists(config.OUTPUT_PATH):
     print("Deleting old folder: " + config.OUTPUT_PATH)
     rmtree(config.OUTPUT_PATH)

@@ -1,14 +1,20 @@
 import cv2
-from os.path import join
+from os import makedirs
+from shutil import rmtree
+from os.path import join, exists
 
 
-INPUT_VIDEO_PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Model/videos/video_accidents.mp4'
-OUTPUT_IMAGES_PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/test_images/Accidents'
+INPUT_VIDEO_PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Model/videos/video_violence.mp4'
+OUTPUT_IMAGES_PATH = r'/home/jose8alcaide/Documentos/AI_camera/AI_app/Data_Base/test_images/violence'
 counter_image = 0
 counter_frame = 0
 
-# initialize the video stream, pointer to output video file, and
-# frame dimensions
+# Delete old folder and make new one
+if exists(OUTPUT_IMAGES_PATH):
+    print("Deleting old folder: " + OUTPUT_IMAGES_PATH)
+    rmtree(OUTPUT_IMAGES_PATH)
+makedirs(OUTPUT_IMAGES_PATH)
+
 print("[INFO] processing video...")
 vs = cv2.VideoCapture(INPUT_VIDEO_PATH)
 writer = None
