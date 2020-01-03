@@ -24,53 +24,53 @@ total_files = 0
 label_counter = 0
 label_found = False
 
-for path, dirs, files in walk(config.INPUT_PATH):
-    for file in files:
-        Q = deque(maxlen=config.SIZE)
-        img = cv2.imread(join(path, file), cv2.IMREAD_UNCHANGED)
-        output = img.copy()
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, (224, 224))
-        img = img.astype("float32")
+with open(config.LOG_ACCURACY, 'w') as accuracy_file:
+    for path, dirs, files in walk(config.INPUT_PATH):
+        for file in files:
+            Q = deque(maxlen=config.SIZE)
+            img = cv2.imread(join(path, file), cv2.IMREAD_UNCHANGED)
+            output = img.copy()
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            img = cv2.resize(img, (224, 224))
+            img = img.astype("float32")
 
-        # Predict
-        preds = model.predict(np.expand_dims(img, axis=0))[0]
-        Q.append(preds)
+            # Predict
+            preds = model.predict(np.expand_dims(img, axis=0))[0]
+            Q.append(preds)
 
-        # Getting label
-        results = np.array(Q).mean(axis=0)
-        i = np.argmax(results)
-        label = config.CLASSES[i]
+            # Getting label
+            results = np.array(Q).mean(axis=0)
+            i = np.argmax(results)
+            label = config.CLASSES[i]
 
-        # Label found
-        label_name = basename(basename(path))
-        if label_name == label:
-            label_found = True
-            label_counter += 1
+            # Label found
+            label_name = basename(basename(path))
+            if label_name == label:
+                label_found = True
+                label_counter += 1
 
-        # draw the activity on the output frame
-        text = "activity: {}".format(label)
-        cv2.putText(output, text, (35, 50), cv2.FONT_HERSHEY_SIMPLEX,
-                    1.25, (0, 255, 0), 5)
+            # draw the activity on the output frame
+            text = "activity: {}".format(label)
+            cv2.putText(output, text, (35, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        1.25, (0, 255, 0), 5)
 
-        # Make directory
-        if not exists(join(config.OUTPUT_PATH, label_name)):
-            makedirs(join(config.OUTPUT_PATH, label_name))
+            # Make directory
+            if not exists(join(config.OUTPUT_PATH, label_name)):
+                makedirs(join(config.OUTPUT_PATH, label_name))
 
-        # Save image
-        cv2.imwrite(join(config.OUTPUT_PATH, label_name, file), output)
+            # Save image
+            cv2.imwrite(join(config.OUTPUT_PATH, label_name, file), output)
 
-        total_files += 1
+            total_files += 1
 
-    # Average
-    if label_found:
-        average = (label_counter / total_files) * 100
+        # Average
+        if label_found:
+            accuracy = (label_counter / total_files) * 100
+            accuracy_file.write(basename(basename(path)) + ': ' + str(accuracy) + '%\n\n')
+            print(basename(basename(path)) + ': ' + str(accuracy) + '%')
 
-        print("AVERAGE")
-        print(basename(basename(path)) + ': ' + str(average) + '%')
-
-        total_files = 0
-        label_counter = 0
-        label_found = False
+            total_files = 0
+            label_counter = 0
+            label_found = False
 
 
