@@ -44,7 +44,8 @@ TRAINING_PLOT_PATH = os.path.sep.join(["output", "training_plot.png"])
 CLR_PLOT_PATH = os.path.sep.join(["output", "clr_plot.png"])
 """
 
-INPUT_PATH = os.path.sep.join(["videos", "video_violence.mp4"])
-OUTPUT_PATH = os.path.sep.join(["output4", "video_violence.mp4"])
-#INPUT_PATH = "images"
-#OUTPUT_PATH = "images_out"
+#INPUT_PATH = os.path.sep.join(["videos", "video_accidents.mp4"])
+#OUTPUT_PATH = os.path.sep.join(["output4", "video_accidents.mp4"])
+INPUT_PATH = "images"
+OUTPUT_PATH = "images_out"
+SIZE = 128
