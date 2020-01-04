@@ -1,7 +1,3 @@
-# USAGE
-# python train.py --lr-find 1
-# python train.py
-
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
 
@@ -11,9 +7,6 @@ matplotlib.use("Agg")
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import VGG16, resnet50, inception_resnet_v2, inception_v3, xception
 from tensorflow.keras.layers import Dropout, Flatten, Dense, Input
-#from tensorflow.keras.layers import Flatten
-#from tensorflow.keras.layers import Dense
-#from tensorflow.keras.layers import Input
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import SGD, Adam
 from sklearn.preprocessing import LabelBinarizer
@@ -28,7 +21,6 @@ import numpy as np
 import cv2
 import sys
 import os
-from shutil import rmtree
 from os.path import exists, basename
 
 LEARNING_RATE_FIND = False
@@ -56,7 +48,6 @@ for imagePath in imagePaths:
     image = cv2.imread(imagePath)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = cv2.resize(image, (224, 224))
-
     # update the data and labels lists, respectively
     data.append(image)
     labels.append(label)
@@ -90,9 +81,7 @@ aug = ImageDataGenerator(
 
 # load the VGG16 network, ensuring the head FC layer sets are left
 # off
-#baseModel = VGG16(weights="imagenet", include_top=False, input_tensor=Input(shape=(224, 224, 3)))
-baseModel = inception_v3.InceptionV3(weights="imagenet", include_top=False,
-                  input_tensor=Input(shape=(224, 224, 3)))
+baseModel = VGG16(weights="imagenet", include_top=False, input_tensor=Input(shape=(224, 224, 3)))
 
 # construct the head of the model that will be placed on top of the
 # the base model

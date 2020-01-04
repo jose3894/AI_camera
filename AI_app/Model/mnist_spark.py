@@ -70,18 +70,20 @@ if __name__ == '__main__':
   from pyspark.context import SparkContext
   from pyspark.conf import SparkConf
   from tensorflowonspark import TFCluster
+  import time
 
-  sc = SparkContext(conf=SparkConf().setAppName("mnist_keras"))
+  start = time.time()
+  sc = SparkContext(conf=SparkConf().setAppName("mnist_spark"))
   executors = sc._conf.get("spark.executor.instances")
   num_executors = int(executors) if executors is not None else 1
 
   parser = argparse.ArgumentParser()
-  parser.add_argument("--batch_size", help="number of records per batch", type=int, default=64)
+  parser.add_argument("--batch_size", help="number of records per batch", type=int, default=100)
   parser.add_argument("--buffer_size", help="size of shuffle buffer", type=int, default=10000)
   parser.add_argument("--cluster_size", help="number of nodes in the cluster", type=int, default=3)
-  parser.add_argument("--epochs", help="number of epochs", type=int, default=3)
-  parser.add_argument("--model_dir", help="path to save model/checkpoint", default="/opt/spark-data")
-  parser.add_argument("--export_dir", help="path to export saved_model", default="mnist_export")
+  parser.add_argument("--epochs", help="number of epochs", type=int, default=5)
+  parser.add_argument("--model_dir", help="path to save model/checkpoint", default="/opt/spark-data/weights")
+  parser.add_argument("--export_dir", help="path to export saved_model", default="/opt/spark-data/mnist_model")
   parser.add_argument("--steps_per_epoch", help="number of steps per epoch", type=int, default=469)
   parser.add_argument("--tensorboard", help="launch tensorboard process", action="store_true")
 
@@ -90,3 +92,6 @@ if __name__ == '__main__':
 
   cluster = TFCluster.run(sc, main_fun, args, args.cluster_size, num_ps=0, tensorboard=args.tensorboard, input_mode=TFCluster.InputMode.TENSORFLOW, master_node='chief')
   cluster.shutdown()
+
+  elapsed = time.time() - start
+  print("Elapsed time: " + str(elapsed) + " seconds")

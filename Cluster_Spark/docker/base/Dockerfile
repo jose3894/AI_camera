@@ -1,6 +1,4 @@
 FROM openjdk:8u212-b04-jdk-slim-buster
-LABEL author="Nathaniel Vala" email="nathanielvala@hotmail.com"
-LABEL version="0.2"
 
 ENV DAEMON_RUN=true
 ENV SPARK_VERSION=2.4.4
@@ -47,7 +45,7 @@ RUN pip3 install pyspark
 RUN pip3 install tensorflow --upgrade
 RUN pip3 install tensorflowonspark
 RUN pip3 install tensorflow_datasets
-
+RUN pip3 install packaging
 
 #Scala instalation
 RUN export PATH="/usr/local/sbt/bin:$PATH" &&  apt update && apt install ca-certificates wget tar && mkdir -p "/usr/local/sbt" && wget -qO - --no-check-certificate "https://github.com/sbt/sbt/releases/download/v1.2.8/sbt-1.2.8.tgz" | tar xz -C /usr/local/sbt --strip-components=1 && sbt sbtVersion
