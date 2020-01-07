@@ -18,36 +18,19 @@ MAX_LR = 1e-4
 BATCH_SIZE = 32
 STEP_SIZE = 8
 CLR_METHOD = "triangular"
-NUM_EPOCHS = 48
+NUM_EPOCHS = 1
+
+# ============== SETTINGS TRAIN ==============
+MODEL_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "camera.model"])
+LRFIND_PLOT_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "lrfind_plot.png"])
+TRAINING_PLOT_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "training_plot.png"])
+CLR_PLOT_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "clr_plot.png"])
+# ============== SETTINGS TRAIN ==============
 
 
-# ============== SETTINGS TRAIN AZURE DEVOPS GPU ==============
-MODEL_PATH = os.path.sep.join(["/output", "SGD_VGG16", "camera.model"])
-LRFIND_PLOT_PATH = os.path.sep.join(["/output", "SGD_VGG16", "lrfind_plot.png"])
-TRAINING_PLOT_PATH = os.path.sep.join(["/output", "SGD_VGG16", "training_plot.png"])
-CLR_PLOT_PATH = os.path.sep.join(["/output", "SGD_VGG16", "clr_plot.png"])
-# ============== SETTINGS TRAIN AZURE DEVOPS GPU ==============
-
-
-# ============== SETTINGS TRAIN LOCAL ==============
-#MODEL_PATH = os.path.sep.join(["SGD_VGG16", "camera.model"])
-#LRFIND_PLOT_PATH = os.path.sep.join(["SGD_VGG16", "lrfind_plot.png"])
-#TRAINING_PLOT_PATH = os.path.sep.join(["SGD_VGG16", "training_plot.png"])
-#CLR_PLOT_PATH = os.path.sep.join(["SGD_VGG16", "clr_plot.png"])
-# ============== SETTINGS TRAIN LOCAL ==============
-
-
-# ============== SETTINGS PREDICT AZURE DEVOPS VM ==============
+# ============== SETTINGS PREDICT ==============
 INPUT_PATH = "test_images"
 OUTPUT_PATH = "test_images_out"
-LOG_ACCURACY = os.path.sep.join(["/output", "SGD_VGG16", "accuracy.txt"])
+LOG_ACCURACY = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "accuracy.txt"])
 SIZE = 128
-# ============== SETTINGS PREDICT AZURE DEVOPS VM ==============
-
-
-# ============== SETTINGS PREDICT LOCAL ==============
-#INPUT_PATH = "test_images"
-#OUTPUT_PATH = "test_images_out"
-#LOG_ACCURACY = os.path.sep.join(["/output", "SGD_VGG16", "accuracy.txt"])
-#SIZE = 128
-# ============== SETTINGS PREDICT LOCAL ==============
+# ============== SETTINGS PREDICT ==============
