@@ -8,10 +8,12 @@ from os.path import join, exists, basename
 import cv2
 
 # Delete old folder save and make new one
+"""
 if exists(config.OUTPUT_PATH):
     print("Deleting old folder: " + config.OUTPUT_PATH)
     rmtree(config.OUTPUT_PATH)
 makedirs(config.OUTPUT_PATH)
+"""
 
 # Make new folder LOG_ACCURACY
 folder_path = config.LOG_ACCURACY.split('/' + basename(config.LOG_ACCURACY))[0]
