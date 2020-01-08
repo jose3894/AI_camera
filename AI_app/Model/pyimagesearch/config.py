@@ -20,17 +20,8 @@ STEP_SIZE = 8
 CLR_METHOD = "triangular"
 NUM_EPOCHS = 1
 
-# ============== SETTINGS TRAIN ==============
+
 MODEL_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "camera.model"])
 LRFIND_PLOT_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "lrfind_plot.png"])
 TRAINING_PLOT_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "training_plot.png"])
 CLR_PLOT_PATH = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "clr_plot.png"])
-# ============== SETTINGS TRAIN ==============
-
-
-# ============== SETTINGS PREDICT ==============
-INPUT_PATH = "test_images"
-OUTPUT_PATH = "test_images_out"
-LOG_ACCURACY = os.path.sep.join(["AI_camera_model", "SGD_VGG16", "accuracy.txt"])
-SIZE = 128
-# ============== SETTINGS PREDICT ==============

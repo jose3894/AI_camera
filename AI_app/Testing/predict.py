@@ -13,9 +13,15 @@ if exists(config.OUTPUT_PATH):
     rmtree(config.OUTPUT_PATH)
 makedirs(config.OUTPUT_PATH)
 
+# Make new folder LOG_ACCURACY
+folder_path = config.LOG_ACCURACY.split('/' + basename(config.LOG_ACCURACY))[0]
+if not exists(folder_path):
+    print("Making folder: " + folder_path)
+    makedirs(folder_path)
+
 # load the trained model from disk
 print("[INFO] loading model and label binarizer...")
-model = load_model(config.MODEL_PATH)
+model = load_model(config.MODEL_PATH_TEST)
 
 # Proccessing images
 print("[INFO] processing images...")
