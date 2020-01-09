@@ -22,5 +22,4 @@ steps:
     containerRegistry: $(dockerHub)
     command: build
     Dockerfile: Dockerfile_x86_ARM
-    arguments: '--no-cache'
     tags: $(tag)
