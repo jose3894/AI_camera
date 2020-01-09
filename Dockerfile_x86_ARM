@@ -98,7 +98,8 @@ RUN mkdir /project
 RUN cd /project && git init
 RUN cd /project && git clone -b dev_VM_Simulation https://github.com/jose3894/AI_camera.git
 RUN cd /project && git lfs install
-RUN cd /project && git lfs fetch
+RUN rm -r /project/AI_camera/AI_app/Model/AI_camera_model
+RUN cd /project/AI_camera/AI_app/Model && git lfs checkout .
 RUN ls /project
 RUN cp -r /project/AI_camera/AI_app /app
 #RUN rm -r /project
